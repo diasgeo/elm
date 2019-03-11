@@ -1,28 +1,30 @@
 #!/bin/bash
 #
-# this script will create and run executive in the example folder
+# this script will create and run ELM in the example folder
 #
 # Yingzi Ying 
 # yingzi.ying@me.com
 
 echo "`date`"
 echo "----------------------------------------"
-EXAMPLE_folder='./EXAMPLE'
-echo "Running example is in folder $EXAMPLE_folder"
+DIM=2D
+EXE=ELM$DIM
+EXAMPLE_FOLDER='./EXAMPLE'
+echo "Running $EXE example in example folder $EXAMPLE_FOLDER"
 
 echo "----------------------------------------"
 echo
 echo "Step 1: create executive."
-SRC_folder='./SRC'
-EXE=ELM2D
-cp $EXAMPLE_folder/PARAMETERS.h $SRC_folder
+SRC_FOLDER='./SRC'
+EXE_SRC=$EXE.c
+cp $EXAMPLE_FOLDER/PARAMETERS.h $SRC_FOLDER
 
-rm -f $EXAMPLE_folder/$EXE
-mpiCC $SRC_folder/ELM2D.c -o $EXAMPLE_folder/$EXE
+rm -f $EXAMPLE_FOLDER/$EXE
+mpiCC $SRC_FOLDER/$EXE_SRC -o $EXAMPLE_FOLDER/$EXE
 
 echo "----------------------------------------"
 echo
 NPROC=4
-echo "Step 2: run executive. Number of processes: $NPROC."
-cd $EXAMPLE_folder
+echo "Step 2: run $EXE. Number of processes: $NPROC."
+cd $EXAMPLE_FOLDER
 mpiexec -np $NPROC $EXE

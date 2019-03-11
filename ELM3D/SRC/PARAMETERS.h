@@ -25,12 +25,12 @@
 #define NumSource 	1              // Number of entries in source_locations file
 #define sdir 		2              // source direction 0=x  1=y 2=z  
 #define sscale 		(1e+6)         // scale source amplitude by this factor
-#define input3 		"ricker15"     // source file
-#define input1 		"location"     // source location file
+#define input1 		"SOURCE"     // source location file
+#define input3 		"SIGNAL"     // source file
 //----------------------------------------------------------------------------------
 // RECEIVERS  &&  SNAPSHOTS
 #define NumGeo		18             // Number of entries in geophone_locations file
-#define input0 		"rec"          // trace coordinates in x y format
+#define input0 		"STATIONS"          // trace coordinates in x y format
 #define LR              1              // rescale the 3d snapshots
 #define NumSnap 	5              // No of snapshots
 #define isnap 		100            // snapshot record interval

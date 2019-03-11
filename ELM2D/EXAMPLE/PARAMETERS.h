@@ -20,15 +20,15 @@
 //---------------------------------------------------------------------------
 // SOURCE
 #define input_source 1          // 0-internal source; 1-external input source; 3-no source
-#define input1 "loc"
+#define input1 "SOURCE"
 #define NumSource 1             // Number of entries in source_locations file
 #define sdir 1                         // source direction 0=x  1=z 
 #define sscale (1e+5)           // scale source amplitude by this factor
-#define input2 "ricker15"         // source
+#define input2 "SIGNAL"         // source
 //---------------------------------------------------------------------------
 // RECEIVERS  &&  SNAPSHOTS
 #define NumGeo 10             // Number of entries in geophone_locations file
-#define input0 "rec2d"     // trace coordinates in x y format
+#define input0 "STATIONS"     // trace coordinates in x y format
 #define NumSnap 10          // No of snapshots
 #define isnap 100              // snapshot record interval
 #define snap_start 100         // start snapshot
