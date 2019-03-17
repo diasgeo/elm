@@ -27,4 +27,4 @@ echo
 nproc=10
 echo "Step 2: run $exe. Number of processes: $nproc."
 cd $example_folder
-mpiexec -np $nproc $exe
+mpiexec -n $nproc $exe

@@ -1,3 +1,4 @@
+ 
 //---------------------------------------------------------------------------------
 // MODEL VALUE
 #define Nx             (60)            // run on 10 nodes
@@ -11,7 +12,7 @@
 #define input8        "none"           //
 #define density       (2000.00)         // Density in kg/m^3
 #define velp          (3500.00)         // P-wave in m/s  
-#define vels          (1500.00)         // S-wave in m/s  
+#define vels          (1750.00)         // S-wave in m/s  
 //----------------------------------------------------------------------------------
 // BOUNDARY CONDITIONS
 #define absorb_model    1           // 0->no boundary: 1->absorb: 2->absorb + surface
