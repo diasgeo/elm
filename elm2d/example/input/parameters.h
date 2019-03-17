@@ -14,9 +14,9 @@
 #define vels          (2500.00)         // S-wave in m/s  
 //----------------------------------------------------------------------------------
 // BOUNDARY CONDITIONS
-#define absorb_model    0           // 0->no boundary: 1->absorb: 2->absorb + surface
-#define lambda         (0)      // 1.5 2.0 4.0 decay constant for boundary
-#define width           0           // no of absorbing columns
+#define absorb_model    1           // 0->no boundary: 1->absorb: 2->absorb + surface
+#define lambda         (2.5e-6)      // 1.5 2.0 4.0 decay constant for boundary
+#define width           100           // no of absorbing columns
 #define topography      0            // 2-> two layers 1-> top file 0 -> none
 #define layer           0            // input layer tracking topography
 #define input5        "none"     //topography 
