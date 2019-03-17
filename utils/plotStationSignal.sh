@@ -27,7 +27,7 @@ gmt gmtset PS_PAGE_ORIENTATION portrait
 #gmt gmtset GMT_VERBOSE d
 
 exampleFolder=example/
-figfolder=exampleFolder\figures/
+figfolder=$exampleFolder\figures/
 mkdir -p $figfolder
 
 parameterFile=$exampleFolder\input/parameters.h
@@ -67,7 +67,8 @@ projection=X2.2i/0.6i
 
 resampling=10
 
-paste -d " " $timeFile $originalxy | awk -v resampling="$resampling" -v normalization="$normalization" 'NR%resampling==0 {print $1, $2/normalization}' | gmt psxy -J$projection -R$region -Bxa0.5f0.25+l"Time (s)" -Bya1f0.5+l"Normalized amplitude" -Wthin,black > $ps
+#paste -d " " $timeFile $originalxy | awk -v resampling="$resampling" -v normalization="$normalization" 'NR%resampling==0 {print $1, $2/normalization}' | gmt psxy -J$projection -R$region -Bxa0.5f0.25+l"Time (s)" -Bya1f0.5+l"Normalized amplitude" -Wthin,black > $ps
+paste -d " " $timeFile $originalxy | awk -v resampling="$resampling" -v normalization="$normalization" 'NR%resampling==0 {print $1, $3/normalization}' | gmt psxy -J$projection -R$region -Bxa0.5f0.25+l"Time (s)" -Bya1f0.5+l"Normalized amplitude" -Wthin,black > $ps
 
 gmt ps2raster -A -Te $ps -D$figfolder
 epstopdf --outfile=$pdf $eps
