@@ -27,7 +27,7 @@ gmt gmtset PS_PAGE_ORIENTATION portrait
 #gmt gmtset GMT_VERBOSE d
 
 exampleFolder=example/
-figfolder=figures/
+figfolder=exampleFolder\figures/
 mkdir -p $figfolder
 
 parameterFile=$exampleFolder\input/parameters.h
