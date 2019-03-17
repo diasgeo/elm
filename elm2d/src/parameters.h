@@ -3,8 +3,8 @@
 #define Nx             (60)            // run on 10 nodes
 #define Ny             (600)          // Y DIR 
 #define dx             (10.0)         // Grid Spacing
-#define dt             (5.0e-4)       // Time step
-#define Max_Time       (4001)         // Max run iterations
+#define dt             (0.0005)       // Time step
+#define Max_Time       (8001)         // Max run iterations
 //---------------------------------------------------------------------------------
 // PHYSICAL VALUE
 #define velocity_model (0)             // 0 - homo model: 1-hetero model
