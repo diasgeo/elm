@@ -2,7 +2,7 @@
 rm -f gmt.conf
 rm -f gmt.history
 
-gmt gmtset MAP_FRAME_AXES ES
+gmt gmtset MAP_FRAME_AXES WeSn
 gmt gmtset MAP_FRAME_TYPE plain
 gmt gmtset MAP_FRAME_PEN thick
 gmt gmtset MAP_TICK_PEN thick
