@@ -3,6 +3,6 @@ BEGIN GMT 5.4.3
 B	xa0.5f0.25+lTime (s)ya1f0.5+lAmplitude
 J	X
 JX	X2.2i/1.0i
-R	0/2.0000/-1/1
+R	0/4.0000/-1/1
 L	1
 END
