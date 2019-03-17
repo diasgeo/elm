@@ -3,8 +3,8 @@
 // Open trace files and locate them correctly
 void trace_files()
 {
-  int i,j,a1;
-  double ss1,ss2,m1, m2, m3;
+  int i,j;
+
   char file_name[50];
   char  string[50];
   FILE *in;
@@ -20,44 +20,8 @@ void trace_files()
 
   for(j=0; j<NumGeo; j++)
   {
-    //fscanf(in,"%d  %d\n",&geo[j][0], &geo[j][1]); 
+    fscanf(in,"%d  %d\n",&geo[j][0], &geo[j][1]); 
     //printf("%d  %d  %d\n",my_rank,geo[j][0], geo[j][1]);
-    fscanf(in,"%d %lf %lf %lf  %lf %lf\n",&a1, &m1, &m2, &ss1, &ss2, &m3); 
-
-      geo[j][0]=round(ss1/dx);
-      geo[j][1]=round(ss2/dx);
-
-      if(ss2==(Ny-1)*dx)
-      {
-        geo[j][1]=Ny-1;
-      }
-    
-      if(geo[j][1]*dx>topo1[geo[j][0]][1])
-      {
-        geo[j][1]=geo[j][1]-1;
-      }
-      if(geo[j][1]*dx>topo1[geo[j][0]][1])
-      {
-        geo[j][1]=geo[j][1]-1;
-      } 
-      if(geo[j][1]*dx>topo1[geo[j][0]][1])
-      {
-        geo[j][1]=geo[j][1]-1;
-      }
-      if(geo[j][1]*dx>topo1[geo[j][0]][1])
-      {
-        geo[j][1]=geo[j][1]-1;
-      }
-      if(geo[j][1]*dx>topo1[geo[j][0]][1])
-      {
-        geo[j][1]=geo[j][1]-1;
-      }
-      if(geo[j][1]*dx>topo1[geo[j][0]][1])
-      {
-        geo[j][1]=geo[j][1]-1;
-      }
-
-
     phone[j][0]=-1;
     phone[j][1]=-1;
   }
@@ -76,7 +40,7 @@ void trace_files()
    {
      if(locate_node(geo[j][0])==my_rank)
      {
-      sprintf(file_name,"%s%d",output4,j);
+      sprintf(file_name,"%s%d_%d",output4,geo[j][0],geo[j][1]);
       //printf("%d %s%d_%d",my_rank, output4,geo[j][0],geo[j][1]);
       if((out_trace[j]= fopen(file_name,"w")) ==NULL )
       {

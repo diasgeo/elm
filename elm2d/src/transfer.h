@@ -151,7 +151,6 @@ void send_posn()
 
 }
 
-/*
 void send_force()
 {
  int index_of_comm = 0;
@@ -186,4 +185,4 @@ void send_force()
  //MPI_Type_free(&fcol);
 
 }
-*/
+

@@ -4,7 +4,7 @@
 #define Min(x,y) ( (x)<=(y)  ?  (x) : (y) )
 #define Gauss(x,y,a)  exp( -(x*x+y*y)/(a*a) )
 //#define output5		"vel"
-#define ff 0
+#define ff 2
 #define P 8
 #define Pl 8
 
@@ -17,10 +17,6 @@ int source[3][NumSource];
 int lr_count,lr_countx,lr_county,lr_countz;
 //double msource[Max_Time][9][NumSource];
 double psource[Max_Time],psource1[Max_Time],gauss[Nx][Ny];
-
-#define Ltop 640
-double topo1[Ltop][2], topo2[Ltop][2], topo3[Ltop][2];
-
 
 double posn[Nx+2][Ny][2], force[Nx+2*ff][Ny][2];
 double eqposn[Nx][Ny][2],up[Nx][Ny][2],dens[Nx+2][Ny];
