@@ -18,7 +18,7 @@
 #define absorb_model    2           // 0->no boundary: 1->absorb: 2->absorb + surface
 #define lambda         (2.5e-6)      // 1.5 2.0 4.0 decay constant for boundary
 #define width           100           // no of absorbing columns
-#define topography      1            // 2-> two layers 1-> top file 0 -> none
+#define topography      0            // 2-> two layers 1-> top file 0 -> none
 #define layer           0            // input layer tracking topography
 #define input5        "input/topography"     //topography 
 //----------------------------------------------------------------------------------
