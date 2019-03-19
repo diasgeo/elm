@@ -20,7 +20,7 @@
 #define width           50           // no of absorbing columns
 #define topography      0            // 2-> two layers 1-> top file 0 -> none
 #define layer           0            // input layer tracking topography
-#define input5        "input/topography"     //topography 
+#define input5        "none"     //topography 
 //----------------------------------------------------------------------------------
 // SOURCE
 #define input_source 	1              // 0 source off : 1 source on
