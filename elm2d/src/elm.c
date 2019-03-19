@@ -41,6 +41,8 @@ int main(int argc ,char *argv[])
 // Initialising and Setting up Geometries
  initial_lattice_setup();
 
+ printf("start absorb_fn:\n");
+
  absorb_fn();
 
  if(layer==1) 
