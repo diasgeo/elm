@@ -31,5 +31,6 @@ echo "Step 2: run $exe. Number of processes: $nproc."
 cd $example_folder
 mpiexec -n $nproc $exe
 
+cd ../
 ./plotStationSignal.sh
 ../utils/git.sh push

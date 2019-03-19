@@ -32,3 +32,4 @@ cd $example_folder
 mpiexec -n $nproc $exe
 
 ./plotStationSignal.sh
+../utils/git.sh push
