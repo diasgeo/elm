@@ -39,7 +39,7 @@ int main(int argc ,char *argv[])
 
 /////////////////////////////////////////////////////////////////
 // Initialising and Setting up Geometries
- load_surface();
+ //load_surface();
 
  initial_lattice_setup();
 

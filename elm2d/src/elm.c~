@@ -9,7 +9,7 @@
 #include"variable.h"
 ////////////////////////////////////////////////////////////////////
 // MAIN 
-main(int argc ,char *argv[])
+int main(int argc ,char *argv[])
 {
  int i,j,k;
  int dims[1],period[1],reorder;
