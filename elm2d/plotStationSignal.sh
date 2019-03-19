@@ -66,8 +66,8 @@ region=0/$timeDuration/-1/1
 projection=X2.2i/1.0i
 
 resampling=10
-#paste -d " " $timeFile $originalxy | awk -v resampling="$resampling" -v normalization="$normalization" 'NR%resampling==0 {print $1, $2/normalization}' | gmt psxy -J$projection -R$region -Bxa0.5f0.25+l"Time (s)" -Bya1f0.5+l"Amplitude" -Wthin,black > $ps
-paste -d " " $timeFile $originalxy | awk -v resampling="$resampling" -v normalization="$normalization" 'NR%resampling==0 {print $1, $3/normalization}' | gmt psxy -J$projection -R$region -Bxa0.5f0.25+l"Time (s)" -Bya1f0.5+l"Amplitude" -Wthin,black > $ps
+paste -d " " $timeFile $originalxy | awk -v resampling="$resampling" -v normalization="$normalization" 'NR%resampling==0 {print $1, $2/normalization}' | gmt psxy -J$projection -R$region -Bxa0.5f0.25+l"Time (s)" -Bya1f0.5+l"Amplitude" -Wthin,black > $ps
+#paste -d " " $timeFile $originalxy | awk -v resampling="$resampling" -v normalization="$normalization" 'NR%resampling==0 {print $1, $3/normalization}' | gmt psxy -J$projection -R$region -Bxa0.5f0.25+l"Time (s)" -Bya1f0.5+l"Amplitude" -Wthin,black > $ps
 
 gmt ps2raster -A -Te $ps -D$figfolder
 epstopdf --outfile=$pdf $eps

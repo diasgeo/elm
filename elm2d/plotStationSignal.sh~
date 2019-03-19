@@ -38,8 +38,6 @@ dt=`grep \ dt $parameterFile | cut -d "(" -f2 | cut -d ")" -f1`
 nt=`grep Max_Time $parameterFile | cut -d "(" -f2 | cut -d ")" -f1`
 timeFile=$exampleFolder/time
 seq 0 $(($nt-1)) | awk -v dt="$dt" '{ print $1*dt}'>$timeFile
-cat $timeFile
-exit
 
 for iStation in $(seq $stationNumber);
 do

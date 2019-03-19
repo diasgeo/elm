@@ -1,0 +1,15 @@
+
+
+MPICC = mpicc
+#MPICC =/opt/intel/impi/3.1/bin64/mpiicc
+
+CFLAGS =  -m 
+
+elm: elm.o 
+	$(MPICC) $(CFLAGS) -o elm elm.o 
+
+elm.o: elm.c 
+	$(MPICC) $(CFLAGS) -c elm.c 
+
+clean:
+	rm -rf *o elm
