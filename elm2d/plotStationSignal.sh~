@@ -69,11 +69,11 @@ resampling=10
 paste -d " " $timeFile $originalxy | awk -v resampling="$resampling" -v normalization="$normalization" 'NR%resampling==0 {print $1, $2/normalization}' | gmt psxy -J$projection -R$region -Bxa2f1+l"Time (s)" -Bya1f0.5+l"Amplitude" -Wthin,blue -K > $ps
 paste -d " " $timeFile $originalxy | awk -v resampling="$resampling" -v normalization="$normalization" 'NR%resampling==0 {print $1, $3/normalization}' | gmt psxy -J -R -B -Wthin,red -O -K >> $ps
 
-gmt pslegend -R -J -D1/0.5/1i/BL -O << END >> $ps
-S 0i s 0.05i #FF0000 0.25p 0.1i 125
-S 0i s 0.05i #0000FF 0.25p 0.1i 2000
-T Hz
+gmt pslegend -R -J -Dx1/0.5+w0.3/0.2+jTL -O << END >> $ps
+S 0i s 0.05i blue 0.25p 0.1i 125
+S 0i s 0.05i red 0.25p 0.1i 2000
 END
+
 
 gmt ps2raster -A -Te $ps -D$figfolder
 epstopdf --outfile=$pdf $eps
