@@ -74,3 +74,5 @@ epstopdf --outfile=$pdf $eps
 rm -f $ps $eps
 rm -f $figfolder/ps2raster_*bb
 done
+
+rm $timeFile
