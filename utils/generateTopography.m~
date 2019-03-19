@@ -9,7 +9,7 @@ topo = ones(size(x))*(Nx-1);
 
 fileID = fopen(['topography'],'w');
 
-for i = [1:rows(topo)]
+for i = [1:Nx]
   fprintf(fileID, '%i %i\n', x(i), topo(i));
 end
 

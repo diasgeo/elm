@@ -2,10 +2,10 @@ clear all
 close all
 clc
 
-Nx = 800;
+Nx = 600;
 x= transpose([0:Nx-1]);
 
-topo = ones(size(x))*(Nx-1);
+topo = ones(size(x))*(Nx-200);
 
 fileID = fopen(['topography'],'w');
 
