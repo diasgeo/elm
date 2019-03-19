@@ -69,7 +69,7 @@ resampling=10
 paste -d " " $timeFile $originalxy | awk -v resampling="$resampling" -v normalization="$normalization" 'NR%resampling==0 {print $1, $2/normalization}' | gmt psxy -J$projection -R$region -Bxa2f1+l"Time (s)" -Bya1f0.5+l"Amplitude" -Wthin,blue -K > $ps
 paste -d " " $timeFile $originalxy | awk -v resampling="$resampling" -v normalization="$normalization" 'NR%resampling==0 {print $1, $3/normalization}' | gmt psxy -J -R -B -Wthin,red -O -K >> $ps
 
-gmt pslegend -R -J -Dx1i/0.5i+w0.25i/0.25i+jBL -O << END >> $ps
+gmt pslegend -R -J -Dx1i/0.5i+w0.2i+jBL -O << END >> $ps
 S 0.5c - 1.0c 0/0/0 thin,blue 2c X
 S 0.5c - 1.0c 0/0/0 thin,red 2c Y
 END
