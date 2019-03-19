@@ -4,7 +4,6 @@ void absorb_fn()
   
   if(absorb_model==1.0)
   {
-  printf("absorb_model==1.0\n");
 
    /// yyyy
    for(i=0; i<Ny; i++)
