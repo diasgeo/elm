@@ -3,7 +3,7 @@
 MPICC = mpicc
 #MPICC =/opt/intel/impi/3.1/bin64/mpiicc
 
-CFLAGS =  -m 
+#CFLAGS =  -lm 
 
 elm: elm.o 
 	$(MPICC) $(CFLAGS) -o elm elm.o 

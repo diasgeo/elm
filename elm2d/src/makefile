@@ -5,11 +5,11 @@ MPICC = mpicc
 
 #CFLAGS =  -lm 
 
-elm: elm.o 
-	$(MPICC) $(CFLAGS) -o elm elm.o 
+3D-ELM: 3D-ELM.o 
+	$(MPICC) $(CFLAGS) -o 3D-ELM 3D-ELM.o 
 
-elm.o: elm.c 
-	$(MPICC) $(CFLAGS) -c elm.c 
+3D-ELM.o: 3D-ELM.c 
+	$(MPICC) $(CFLAGS) -c 3D-ELM.c 
 
 clean:
-	rm -rf *o elm
+	rm -rf *o 3D-ELM

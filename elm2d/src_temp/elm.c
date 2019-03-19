@@ -41,7 +41,7 @@ int main(int argc ,char *argv[])
 // Initialising and Setting up Geometries
  initial_lattice_setup();
 
- //absorb_fn();
+ absorb_fn();
 
  if(layer==1) 
  {
@@ -50,7 +50,7 @@ int main(int argc ,char *argv[])
  }
  if(topography==1) 
  {
-  // setup_top();
+   setup_top();
  }
 
  set_up_geometry_and_neighbours();

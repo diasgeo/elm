@@ -114,6 +114,6 @@ void evolve()
  }
  }
 
- //absorb();
+ absorb();
 
 }

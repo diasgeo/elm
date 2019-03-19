@@ -1,3 +1,54 @@
+///////////////////////////////////////////////////////////////////
+#define Ltop 640
+void load_surface()
+{
+
+ int i,j,k,n,p;
+ FILE *input;
+
+ if(( input= fopen("../sem5/etna_surf1.dat","r"))==NULL )
+ {
+     printf("Error 5001: opening topography file on node %d\n",my_rank);
+     MPI_Finalize();
+     exit(0);
+ }
+ for (n=0; n<(Ltop); n++)
+ {
+    fscanf(input,"%lf %lf\n",&topo1[n][0],&topo1[n][1]);
+ }
+ fclose(input);
+ //printf("loaded 1 %d\n",my_rank);
+
+ if(( input= fopen("../sem5/etna_surf2.dat","r"))==NULL )
+ {
+     printf("Error 5002: opening topography file on node %d\n",my_rank);
+     MPI_Finalize();
+     exit(0);
+ }
+ for (n=0; n<(Ltop); n++)
+ {
+    fscanf(input,"%lf %lf\n",&topo2[n][0],&topo2[n][1]);
+ }
+ fclose(input);
+ //printf("loaded 2 %d\n",my_rank);
+
+if(( input= fopen("../sem5/etna_surf3.dat","r"))==NULL )
+ {
+     printf("Error 5003: opening topography file on node %d\n",my_rank);
+     MPI_Finalize();
+     exit(0);
+ }
+ for (n=0; n<(Ltop); n++)
+ {
+    fscanf(input,"%lf %lf\n",&topo3[n][0],&topo3[n][1]);
+ }
+ fclose(input);
+ //printf("loaded 3 %d\n",my_rank);
+
+}
+
+///////////////////////////////////////////////////////////////////
+
 int locate_node(int coord)
 {
   int i,node=0;
@@ -12,6 +63,8 @@ int locate_node(int coord)
   return node;
 
 }
+
+///////////////////////////////////////////////////////////////////
 
 void initial_lattice_setup()
 {
@@ -64,63 +117,46 @@ void initial_lattice_setup()
  }
  }
 
+//////////////////////////////////////////////////////////////////
+/*&MATERIAL tag=1, kind='ELAST' /
+&MAT_ELASTIC rho=2000.d0, cp=2000.d0, cs=1250.d0 /
 
-///----------------------------------------------
-/* for(i=0; i<Nx+2; i++)
- {
- for(j=0; j<101; j++)
- {
-   dens[i][j]=2500.0;
-   vp[i][j]=3500.0;
-   vs[i][j]=3500.0/sqrt(3.0);
- }
- }
- for(i=0; i<Nx+2; i++)
- {
- for(j=100; j<201; j++)
- {
-   dens[i][j]=2500.0;
-   vp[i][j]=3000.0;
-   vs[i][j]=3000.0/sqrt(3.0);
- }
- }
- for(i=0; i<Nx+2; i++)
- {
- for(j=200; j<Ny; j++)
- {
-   dens[i][j]=2500.0;
-   vp[i][j]=2500.0;
-   vs[i][j]=2500.0/sqrt(3.0);
- }
- }
- for(i=250; i<Nx*my_size; i++)
+&MATERIAL tag=2, kind='ELAST' /
+&MAT_ELASTIC rho=2300.d0, cp=3000.d0, cs=2000.d0 /
+
+&MATERIAL tag=3, kind='ELAST' /
+&MAT_ELASTIC rho=2500.d0, cp=4000.d0, cs=2750.d0 /
+*/
+
+ for(i=0; i<Nx*my_size; i++)
  {
  for(j=0; j<Ny; j++)
  {
-   if(locate_node(i)==my_rank )
-   { 
-     ii=i%Nx;
-     dens[ii+1][j]=2200.0;
-     vp[ii+1][j]=3250.0;
-     vs[ii+1][j]=3250.0/sqrt(3.0);
+  if(locate_node(i)==my_rank )
+  {
+  ii=i%Nx;
+  if(j*dx>topo1[i][1] + dx )
+  {
+   vp[ii+1][j]=-1974.0;
   }
- }
- }*/
 
-/*
- for(i=200; i<Nx*my_size; i++)
- {
- for(j=0; j<Ny; j++)
- {
-   if(locate_node(i)==my_rank )
-   { 
-     ii=i%Nx;
-     dens[ii+1][j]=2500.0;
+ /* if(j*dx<=topo2[i][1] && j*dx>topo3[i][1]+1)
+  {
+     dens[ii+1][j]=2300.0;
      vp[ii+1][j]=3000.0;
-     vs[ii+1][j]=3000.0/sqrt(3.0);
+     vs[ii+1][j]=2000.0;
+  }
+
+  if(j*dx<=topo3[i][1] )
+  {
+     dens[ii+1][j]=2500.0;
+     vp[ii+1][j]=4000.0;
+     vs[ii+1][j]=2750.0;
+  }*/
+
   }
  }
- }*/
+ }
 ///----------------------------------------------
 
 

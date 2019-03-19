@@ -12,15 +12,15 @@
 #define input8        "none"           //
 #define density       (2000.00)         // Density in kg/m^3
 #define velp          (3500.00)         // P-wave in m/s  
-#define vels          (1750.00)         // S-wave in m/s  
+#define vels          (2500.00)         // S-wave in m/s  
 //----------------------------------------------------------------------------------
 // BOUNDARY CONDITIONS
-#define absorb_model    0           // 0->no boundary: 1->absorb: 2->absorb + surface
-#define lambda         (2.0)      // 1.5 2.0 4.0 decay constant for boundary
+#define absorb_model    2           // 0->no boundary: 1->absorb: 2->absorb + surface
+#define lambda         (2.5e-6)      // 1.5 2.0 4.0 decay constant for boundary
 #define width           100           // no of absorbing columns
-#define topography      0            // 2-> two layers 1-> top file 0 -> none
+#define topography      1            // 2-> two layers 1-> top file 0 -> none
 #define layer           0            // input layer tracking topography
-#define input5        "none"     //topography 
+#define input5        "input/topography"     //topography 
 //----------------------------------------------------------------------------------
 // SOURCE
 #define input_source 	1              // 0 source off : 1 source on

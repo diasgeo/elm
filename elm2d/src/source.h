@@ -3,6 +3,7 @@
 void source_routine()
 {
  int i,j,n;
+ double aaa,ss1,ss2,dist_so;
  FILE *in;
  char  string[50];
 
@@ -19,7 +20,7 @@ void source_routine()
    }
   for(i=0; i<Max_Time; i++)
   {
-    fscanf(in,"%lf \n",&psource[i]);
+    fscanf(in,"%lf %lf \n",&aaa,&psource[i]);
     //fscanf(in,"%lf %lf\n",&psource[i],&psource1[i]);
   }
   fclose(in);
@@ -37,7 +38,10 @@ void source_routine()
    for (i = 0; i < NumSource; i++)
    {
       source[0][i]=source[1][i]=0;
-      fscanf( in,"%d %d\n", &source[0][i], &source[1][i]);
+      fscanf( in,"%lf %lf\n", &ss1, &ss2);
+      //fscanf( in,"%lf %lf\n", &source[0][i], &source[1][i]);
+      source[0][i]=round(ss1/dx);
+      source[1][i]=round(ss2/dx);
    }
    fclose(in);
 
@@ -53,7 +57,7 @@ void source_routine()
  }
  }
 
- /*for(i=0; i<Nx; i++)
+ for(i=0; i<Nx; i++)
  {
  for(j=0; j<Ny; j++)
  {
@@ -64,7 +68,21 @@ void source_routine()
  {
    if(locate_node(source[0][n])==my_rank) 
    gauss[source[0][n]%Nx][source[1][n]]=1.0;
- }*/
+ }
+
+  n=0;
+  for(i=0; i<Nx; i++)
+  {
+  for(j=0; j<Ny; j++)
+  {
+   dist_so = sqrt( (source[0][n]*dx-eqposn[i][j][0])*(source[0][n]*dx-eqposn[i][j][0])+
+                   (source[1][n]*dx-eqposn[i][j][1])*(source[1][n]*dx-eqposn[i][j][1]) );
+   if(dist_so < 2.0*dx)
+   {
+     gauss[i][j] = 1.0;
+   }
+  }
+  }
 
 }
 
@@ -77,8 +95,8 @@ void force_source()
  {
  for(j=0; j<Ny; j++)
  {
-   //force[i+ff][j][sdir] = force[i+ff][j][sdir] + sscale*psource[run_time]*gauss[i][j];
-   up[i][j][sdir] = up[i][j][sdir] + sscale*psource[run_time]*gauss[i][j];
+   force[i+ff][j][sdir] = force[i+ff][j][sdir] + sscale*psource[run_time]*gauss[i][j];
+   //up[i][j][sdir] = up[i][j][sdir] + sscale*psource[run_time]*gauss[i][j];
  }
  }
 

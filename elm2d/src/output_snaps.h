@@ -27,8 +27,13 @@ char  string[50];
    {
    for(j=0; j<Ny; j++)
    {
-     fprintf(out,"%e %e\n",up[i][j][0],up[i][j][1]); 
-     //fprintf(out,"%e %e\n",kspring[i][j][0],kspring[i][j][1]); 
+     a=1.0;
+     if(vp[i+1][j]==-1974.0)
+     a=0.0;
+
+     fprintf(out,"%e %e\n",up[i][j][0]/a,up[i][j][1]/a); 
+     //fprintf(out,"%e %e\n",kspring[i][j][0],kspring[i][j][1]);
+     //fprintf(out,"%e %e\n",vp[i+1][j],vs[i+1][j]);  
      //fprintf(out,"%e %e\n",r0[i][j][2],r0[i][j][3]); 
     // fprintf(out,"%e %e %e\n",a,b,c);
    }

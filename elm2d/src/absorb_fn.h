@@ -4,7 +4,6 @@ void absorb_fn()
   
   if(absorb_model==1.0)
   {
-
    /// yyyy
    for(i=0; i<Ny; i++)
    {

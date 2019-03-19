@@ -9,7 +9,7 @@
 #include"variable.h"
 ////////////////////////////////////////////////////////////////////
 // MAIN 
-int main(int argc ,char *argv[])
+main(int argc ,char *argv[])
 {
  int i,j,k;
  int dims[1],period[1],reorder;
@@ -39,6 +39,8 @@ int main(int argc ,char *argv[])
 
 /////////////////////////////////////////////////////////////////
 // Initialising and Setting up Geometries
+ load_surface();
+
  initial_lattice_setup();
 
  absorb_fn();
@@ -50,7 +52,7 @@ int main(int argc ,char *argv[])
  }
  if(topography==1) 
  {
-   setup_top();
+  // setup_top();
  }
 
  set_up_geometry_and_neighbours();
