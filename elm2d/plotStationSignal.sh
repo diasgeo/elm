@@ -45,9 +45,9 @@ x_stationNumber=`cat $stationFile | awk -v iStation="$iStation" 'NR==iStation{ p
 y_stationNumber=`cat $stationFile | awk -v iStation="$iStation" 'NR==iStation{ print $2 }'`
 
 name=$stationNamePrefix$x_stationNumber\_$y_stationNumber
-ps=$figfolder$name_$iStation.ps
-eps=$figfolder$name_$iStation.eps
-pdf=$figfolder$name_$iStation.pdf
+ps=$figfolder$name\_$iStation.ps
+eps=$figfolder$name\_$iStation.eps
+pdf=$figfolder$name\_$iStation.pdf
 
 originalxy=$exampleFolder$name
 
@@ -69,9 +69,9 @@ resampling=10
 paste -d " " $timeFile $originalxy | awk -v resampling="$resampling" -v normalization="$normalization" 'NR%resampling==0 {print $1, $2/normalization}' | gmt psxy -J$projection -R$region -Bxa2f1+l"Time (s)" -Bya1f0.5+l"Amplitude" -Wthin,blue -K > $ps
 paste -d " " $timeFile $originalxy | awk -v resampling="$resampling" -v normalization="$normalization" 'NR%resampling==0 {print $1, $3/normalization}' | gmt psxy -J -R -B -Wthin,red -O -K >> $ps
 
-gmt pslegend -R -J -Dx1/0.5+w0.3/0.2+jTL -O << END >> $ps
-S 0.5c - 1.0c 0/0/0 1p,blue 2c X
-S 0.5c - 1.0c 0/0/0 1p,red 2c Y
+gmt pslegend -R -J -Dx3/1+w0.3/0.2+jTL -O << END >> $ps
+S 0.5c - 1.0c 0/0/0 thin,blue 2c X
+S 0.5c - 1.0c 0/0/0 thin,red 2c Y
 END
 
 

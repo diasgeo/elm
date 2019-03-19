@@ -70,9 +70,10 @@ paste -d " " $timeFile $originalxy | awk -v resampling="$resampling" -v normaliz
 paste -d " " $timeFile $originalxy | awk -v resampling="$resampling" -v normalization="$normalization" 'NR%resampling==0 {print $1, $3/normalization}' | gmt psxy -J -R -B -Wthin,red -O -K >> $ps
 
 gmt pslegend -R -J -Dx1/0.5+w0.3/0.2+jTL -O << END >> $ps
-S 0i s 0.05i blue 0.25p 0.1i 125
-S 0i s 0.05i red 0.25p 0.1i 2000
+S 0.5c - 1.0c 0/0/0 thin,blue 2c X
+S 0.5c - 1.0c 0/0/0 1p,red 2c Y
 END
+
 
 
 gmt ps2raster -A -Te $ps -D$figfolder
