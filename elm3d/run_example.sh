@@ -5,6 +5,7 @@
 # Yingzi Ying 
 # yingzi.ying@me.com
 #
+nproc=$1
 
 echo "`date`"
 echo "----------------------------------------"
@@ -26,10 +27,10 @@ mpicc $src_folder/$exe_src -o $example_folder/$exe -lm
 
 echo "----------------------------------------"
 echo
-nproc=10
 echo "Step 2: run $exe. Number of processes: $nproc."
 cd $example_folder
-mpiexec -n $nproc $exe
+mpiexec -np $nproc $exe
+exit
 
 cd ../
 ./plotStationSignal.sh

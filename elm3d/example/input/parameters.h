@@ -41,7 +41,7 @@
 //----------------------------------------------------------------------------------
 // OUTPUT FILE NAMES
 #define output2		"disp"
-//#define output4		"bulk_rec"
+#define output4		"bulk_rec"
 #define output6         "surface"     // outputs surface traces
 //---------------------------------------------------------------------------------
 #define mxx (1.0)

@@ -51,15 +51,7 @@ void source_routine()
 void moment_source()
 {
   int i,j,k,jp,jm,s,im,ip,km,kp;
-//  double mxx,myy,mzz,mxy,mxz,myz;
-  
- // mxx=1.0;
-  //myy=1.0;
-  //mzz=1.0;
-  //mxy=0.0;
-  //mxz=0.0;
-  //myz=0.0;
-  
+
  for (s = 0; s < NumSource; s++)
  {
    i=source[0][s]%Nx;  im=(source[0][s]-1)%Nx; ip=(source[0][s]+1)%Nx;
@@ -78,34 +70,34 @@ void moment_source()
   
    if(locate_node(source[0][s] + 0) == my_rank)
    {
-     force[i + ff][j][kp][0] = force[i + ff][j][kp][0] + mxz*sscale*msource[run_time][s];
-     force[i + ff][j][kp][1] = force[i + ff][j][kp][1] + myz*sscale*msource[run_time][s];
-     force[i + ff][j][kp][2] = force[i + ff][j][kp][2] + mzz*sscale*msource[run_time][s];
+     force[i][j][kp][0] = force[i][j][kp][0] + mxz*sscale*msource[run_time][s];
+     force[i][j][kp][1] = force[i][j][kp][1] + myz*sscale*msource[run_time][s];
+     force[i][j][kp][2] = force[i][j][kp][2] + mzz*sscale*msource[run_time][s];
      
-     force[i + ff][j][km][0] = force[i + ff][j][km][0] - mxz*sscale*msource[run_time][s];
-     force[i + ff][j][km][1] = force[i + ff][j][km][1] - myz*sscale*msource[run_time][s];
-     force[i + ff][j][km][2] = force[i + ff][j][km][2] - mzz*sscale*msource[run_time][s];
+     force[i][j][km][0] = force[i][j][km][0] - mxz*sscale*msource[run_time][s];
+     force[i][j][km][1] = force[i][j][km][1] - myz*sscale*msource[run_time][s];
+     force[i][j][km][2] = force[i][j][km][2] - mzz*sscale*msource[run_time][s];
      
-     force[i + ff][jp][k][0] = force[i + ff][jp][k][0] + mxy*sscale*msource[run_time][s];
-     force[i + ff][jp][k][1] = force[i + ff][jp][k][1] + myy*sscale*msource[run_time][s];
-     force[i + ff][jp][k][2] = force[i + ff][jp][k][2] + myz*sscale*msource[run_time][s];
+     force[i][jp][k][0] = force[i][jp][k][0] + mxy*sscale*msource[run_time][s];
+     force[i][jp][k][1] = force[i][jp][k][1] + myy*sscale*msource[run_time][s];
+     force[i][jp][k][2] = force[i][jp][k][2] + myz*sscale*msource[run_time][s];
      
-     force[i + ff][jm][k][0] = force[i + ff][jm][k][0] - mxy*sscale*msource[run_time][s];
-     force[i + ff][jm][k][1] = force[i + ff][jm][k][1] - myy*sscale*msource[run_time][s];
-     force[i + ff][jm][k][2] = force[i + ff][jm][k][2] - myz*sscale*msource[run_time][s];
+     force[i][jm][k][0] = force[i][jm][k][0] - mxy*sscale*msource[run_time][s];
+     force[i][jm][k][1] = force[i][jm][k][1] - myy*sscale*msource[run_time][s];
+     force[i][jm][k][2] = force[i][jm][k][2] - myz*sscale*msource[run_time][s];
    }
    if(locate_node(source[0][s]+ 1)==my_rank)
    {
-     force[ip + ff][j][k][0] = force[ip + ff][j][k][0] + mxx*sscale*msource[run_time][s];
-     force[ip + ff][j][k][1] = force[ip + ff][j][k][1] + mxy*sscale*msource[run_time][s];
-     force[ip + ff][j][k][2] = force[ip + ff][j][k][2] + mxz*sscale*msource[run_time][s];
+     force[ip][j][k][0] = force[ip][j][k][0] + mxx*sscale*msource[run_time][s];
+     force[ip][j][k][1] = force[ip][j][k][1] + mxy*sscale*msource[run_time][s];
+     force[ip][j][k][2] = force[ip][j][k][2] + mxz*sscale*msource[run_time][s];
      
    }
    if(locate_node(source[0][s]-1)==my_rank)
    { 
-     force[im + ff][j][k][0] = force[im + ff][j][k][0] - mxx*sscale*msource[run_time][s];
-     force[im + ff][j][k][1] = force[im + ff][j][k][1] - mxy*sscale*msource[run_time][s];
-     force[im + ff][j][k][2] = force[im + ff][j][k][2] - mxz*sscale*msource[run_time][s];
+     force[im][j][k][0] = force[im][j][k][0] - mxx*sscale*msource[run_time][s];
+     force[im][j][k][1] = force[im][j][k][1] - mxy*sscale*msource[run_time][s];
+     force[im][j][k][2] = force[im][j][k][2] - mxz*sscale*msource[run_time][s];
    }
    
  }
@@ -132,39 +124,39 @@ void vol_source()
 
    if(locate_node(source[0][s])==my_rank)
    {
-          force[i+ff][j][k][0] = force[i+ff][j][k][0] - sscale*msource[run_time][s];
-          force[i+ff][j][k][1] = force[i+ff][j][k][1] - sscale*msource[run_time][s];
-          force[i+ff][j][k][2] = force[i+ff][j][k][2] - sscale*msource[run_time][s];
+          force[i][j][k][0] = force[i][j][k][0] - sscale*msource[run_time][s];
+          force[i][j][k][1] = force[i][j][k][1] - sscale*msource[run_time][s];
+          force[i][j][k][2] = force[i][j][k][2] - sscale*msource[run_time][s];
 
-          force[i+ff][j+1][k][0] = force[i+ff][j+1][k][0] - sscale*msource[run_time][s];
-          force[i+ff][j+1][k][1] = force[i+ff][j+1][k][1] + sscale*msource[run_time][s];
-          force[i+ff][j+1][k][2] = force[i+ff][j+1][k][2] - sscale*msource[run_time][s];
+          force[i][j+1][k][0] = force[i][j+1][k][0] - sscale*msource[run_time][s];
+          force[i][j+1][k][1] = force[i][j+1][k][1] + sscale*msource[run_time][s];
+          force[i][j+1][k][2] = force[i][j+1][k][2] - sscale*msource[run_time][s];
 
-          force[i+ff][j][k+1][0] = force[i+ff][j][k+1][0] - sscale*msource[run_time][s];
-          force[i+ff][j][k+1][1] = force[i+ff][j][k+1][1] - sscale*msource[run_time][s];
-          force[i+ff][j][k+1][2] = force[i+ff][j][k+1][2] + sscale*msource[run_time][s];
+          force[i][j][k+1][0] = force[i][j][k+1][0] - sscale*msource[run_time][s];
+          force[i][j][k+1][1] = force[i][j][k+1][1] - sscale*msource[run_time][s];
+          force[i][j][k+1][2] = force[i][j][k+1][2] + sscale*msource[run_time][s];
 
-          force[i+ff][j+1][k+1][0] = force[i+ff][j+1][k+1][0] - sscale*msource[run_time][s];
-          force[i+ff][j+1][k+1][1] = force[i+ff][j+1][k+1][1] + sscale*msource[run_time][s];
-          force[i+ff][j+1][k+1][2] = force[i+ff][j+1][k+1][2] +  sscale*msource[run_time][s];
+          force[i][j+1][k+1][0] = force[i][j+1][k+1][0] - sscale*msource[run_time][s];
+          force[i][j+1][k+1][1] = force[i][j+1][k+1][1] + sscale*msource[run_time][s];
+          force[i][j+1][k+1][2] = force[i][j+1][k+1][2] +  sscale*msource[run_time][s];
    }
    if(locate_node(source[0][s]+1)==my_rank)
    {
-          force[ii+ff][j][k][0] = force[ii+ff][j][k][0] + sscale*msource[run_time][s];
-          force[ii+ff][j][k][1] = force[ii+ff][j][k][1] - sscale*msource[run_time][s];
-          force[ii+ff][j][k][2] = force[ii+ff][j][k][2] - sscale*msource[run_time][s];
+          force[ii][j][k][0] = force[ii][j][k][0] + sscale*msource[run_time][s];
+          force[ii][j][k][1] = force[ii][j][k][1] - sscale*msource[run_time][s];
+          force[ii][j][k][2] = force[ii][j][k][2] - sscale*msource[run_time][s];
 
-          force[ii+ff][j+1][k][0] = force[ii+ff][j+1][k][0] + sscale*msource[run_time][s];
-          force[ii+ff][j+1][k][1] = force[ii+ff][j+1][k][1] + sscale*msource[run_time][s];
-          force[ii+ff][j+1][k][2] = force[ii+ff][j+1][k][2] - sscale*msource[run_time][s];
+          force[ii][j+1][k][0] = force[ii][j+1][k][0] + sscale*msource[run_time][s];
+          force[ii][j+1][k][1] = force[ii][j+1][k][1] + sscale*msource[run_time][s];
+          force[ii][j+1][k][2] = force[ii][j+1][k][2] - sscale*msource[run_time][s];
 
-          force[ii+ff][j][k+1][0] = force[ii+ff][j][k+1][0] + sscale*msource[run_time][s];
-          force[ii+ff][j][k+1][1] = force[ii+ff][j][k+1][1] - sscale*msource[run_time][s];
-          force[ii+ff][j][k+1][2] = force[ii+ff][j][k+1][2] + sscale*msource[run_time][s];
+          force[ii][j][k+1][0] = force[ii][j][k+1][0] + sscale*msource[run_time][s];
+          force[ii][j][k+1][1] = force[ii][j][k+1][1] - sscale*msource[run_time][s];
+          force[ii][j][k+1][2] = force[ii][j][k+1][2] + sscale*msource[run_time][s];
 
-          force[ii+ff][j+1][k+1][0] = force[ii+ff][j+1][k+1][0] + sscale*msource[run_time][s];
-          force[ii+ff][j+1][k+1][1] = force[ii+ff][j+1][k+1][1] + sscale*msource[run_time][s];
-          force[ii+ff][j+1][k+1][2] = force[ii+ff][j+1][k+1][2] + sscale*msource[run_time][s];
+          force[ii][j+1][k+1][0] = force[ii][j+1][k+1][0] + sscale*msource[run_time][s];
+          force[ii][j+1][k+1][1] = force[ii][j+1][k+1][1] + sscale*msource[run_time][s];
+          force[ii][j+1][k+1][2] = force[ii][j+1][k+1][2] + sscale*msource[run_time][s];
    }
 
   }
@@ -190,7 +182,7 @@ void force_source()
 
    if(locate_node(source[0][s])==my_rank)
    {
-     force[i+ff][j][k][sdir] = force[i+ff][j][k][sdir] + sscale*msource[run_time][s];
+     force[i][j][k][sdir] = force[i][j][k][sdir] + sscale*msource[run_time][s];
    }
 
  }
@@ -208,7 +200,7 @@ void plane_waveX()
   {
   for(k=0; k<Nz; k++)
   {
-     force[i+ff][j][k][0] = force[i+ff][j][k][0] + sscale*msource[run_time][0];
+     force[i][j][k][0] = force[i][j][k][0] + sscale*msource[run_time][0];
   }
   }
  }
@@ -224,7 +216,7 @@ void plane_waveY()
   {
   for(k=0; k<Nz; k++)
   {
-     force[i+ff][j][k][1] = force[i+ff][j][k][1] + sscale*msource[run_time][0];
+     force[i][j][k][1] = force[i][j][k][1] + sscale*msource[run_time][0];
   }
   }
 
@@ -239,7 +231,7 @@ void plane_waveZ()
   {
   for(j=0; j<Ny; j++)
   {
-     force[i+ff][j][k][2] = force[i+ff][j][k][2] + sscale*msource[run_time][0];
+     force[i][j][k][2] = force[i][j][k][2] + sscale*msource[run_time][0];
   }
   }
 

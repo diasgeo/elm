@@ -5,13 +5,13 @@
 
 ///----------------------------------------------
 #define my_size         64                  // number of nodes used
-#define Nx             (16)                 // X DIR 
+#define Nx             (8)                 // X DIR 
 #define Max_Time       (5001)               // Max run iterations
-#define NumGeo       	262              // Number geophone locations
-#define input0         "rec_all"                 // trace coordinates in x y format
+#define NumGeo       	75             // Number geophone locations
+#define input0         "recorders"                 // trace coordinates in x y format
 #define input1         "bulk_rec_node"                 // trace coordinates in x y format
 #define output1        "station"
-///----------------------------------------------         
+///----------------------------------------------
 
 
 int locate_node(int coord);

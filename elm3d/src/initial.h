@@ -28,35 +28,63 @@ void initial_lattice_setup()
  NumSnapsS=0;
 
  ///////////////////////////////////////////////////////////////////
- IndexX[0]=-1;
- IndexX[1]=0;
+ IndexX[0]=0;
+ IndexX[1]=1;
  IndexX[2]=1;
  IndexX[3]=1;
  IndexX[4]=0;
- IndexX[5]=0;
- IndexX[6]=0;
+ IndexX[5]=-1;
+ IndexX[6]=-1;
  IndexX[7]=-1;
- IndexX[8]=1;
+ IndexX[8]=0;
+ IndexX[9]=0;
+ IndexX[10]=0;
+ IndexX[11]=0;
+ IndexX[12]=0;
+ IndexX[13]=0;
+ IndexX[14]=1;
+ IndexX[15]=-1;
+ IndexX[16]=-1;
+ IndexX[17]=1;
 
  IndexY[0]=1;
  IndexY[1]=1;
- IndexY[2]=1;
- IndexY[3]=0;
+ IndexY[2]=0;
+ IndexY[3]=-1;
  IndexY[4]=-1;
- IndexY[5]=0;
- IndexY[6]=1;
- IndexY[7]=0;
- IndexY[8]=0;
+ IndexY[5]=-1;
+ IndexY[6]=0;
+ IndexY[7]=1;
+ IndexY[8]=1;
+ IndexY[9]=0;
+ IndexY[10]=-1;
+ IndexY[11]=-1;
+ IndexY[12]=0;
+ IndexY[13]=1;
+ IndexY[14]=0;
+ IndexY[15]=0;
+ IndexY[16]=0;
+ IndexY[17]=0;
 
  IndexZ[0]=0;
  IndexZ[1]=0;
  IndexZ[2]=0;
  IndexZ[3]=0;
- IndexZ[4]=1;
- IndexZ[5]=1;
- IndexZ[6]=1;
- IndexZ[7]=1;
- IndexZ[8]=1;
+ IndexZ[4]=0;
+ IndexZ[5]=0;
+ IndexZ[6]=0;
+ IndexZ[7]=0;
+ IndexZ[8]=-1;
+ IndexZ[9]=-1;
+ IndexZ[10]=-1;
+ IndexZ[11]=1;
+ IndexZ[12]=1;
+ IndexZ[13]=1;
+ IndexZ[14]=-1;
+ IndexZ[15]=-1;
+ IndexZ[16]=1;
+ IndexZ[17]=1;
+
 
 ///////////////////////////////////////////////////////////////////
  // Assigning Initial Homogeneous Values
@@ -135,17 +163,16 @@ void initial_lattice_setup()
  {
  for(k=0; k<Nz; k++)
  {
-    posn[i+1][j][k][0]=i*dx+my_rank*dx*Nx;
-    posn[i+1][j][k][1]=dx*j;
-    posn[i+1][j][k][2]=dx*k;
+   posn[i+1][j][k][0]=i*dx+my_rank*dx*Nx;
+   posn[i+1][j][k][1]=dx*j;
+   posn[i+1][j][k][2]=dx*k;
 
-    eqposn[i][j][k][0]=posn[i+1][j][k][0];
-    eqposn[i][j][k][1]=posn[i+1][j][k][1];
-    eqposn[i][j][k][2]=posn[i+1][j][k][2];
-
-  }
-  }
-  }
+   eqposn[i][j][k][0]=posn[i+1][j][k][0];
+   eqposn[i][j][k][1]=posn[i+1][j][k][1];
+   eqposn[i][j][k][2]=posn[i+1][j][k][2];
+ }
+ }
+ }
 
   lr_count=lr_countx=lr_county=lr_countz=0;
   for(i=0; i<Nx; i=i+LR)

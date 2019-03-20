@@ -150,39 +150,3 @@ void send_posn()
  //MPI_Type_free(&fcol);
 
 }
-
-void send_force()
-{
- int index_of_comm = 0;
-
- if(my_rank==0)
- {
-   MPI_Isend(&force[1][0][0][0],1,fcol,my_size-1,53,new_comm, &array_of_requests[index_of_comm++]);
-   MPI_Irecv(&force[Nx+3][0][0][0],1,fcol,my_rank+1,53,new_comm, &array_of_requests[index_of_comm++]);
-
-   MPI_Irecv(&force[0][0][0][0],1,fcol,my_size-1,53,new_comm, &array_of_requests[index_of_comm++] );
-   MPI_Isend(&force[Nx+2][0][0][0],1,fcol,my_rank+1,53,new_comm, &array_of_requests[index_of_comm++]);
- }
- else if( my_rank>0 && my_rank< (my_size-1) )
- {
-  MPI_Isend(&force[1][0][0][0],1,fcol,my_rank-1,53,new_comm, &array_of_requests[index_of_comm++]);
-  MPI_Irecv(&force[Nx+3][0][0][0],1,fcol,my_rank+1,53,new_comm, &array_of_requests[index_of_comm++]);
-
-  MPI_Irecv(&force[0][0][0][0],1,fcol,my_rank-1,53,new_comm, &array_of_requests[index_of_comm++]);
-  MPI_Isend(&force[Nx+2][0][0][0],1,fcol,my_rank+1,53,new_comm,  &array_of_requests[index_of_comm++]);
- }
- else if( my_rank == (my_size-1) )
- {
-   MPI_Irecv(&force[Nx+3][0][0][0],1,fcol,0,53,new_comm,  &array_of_requests[index_of_comm++]);
-   MPI_Isend(&force[1][0][0][0],1,fcol,my_rank-1,53,new_comm,  &array_of_requests[index_of_comm++]);
-
-   MPI_Isend(&force[Nx+2][0][0][0],1,fcol,0,53,new_comm,  &array_of_requests[index_of_comm++]);
-   MPI_Irecv(&force[0][0][0][0],1,fcol,my_rank-1,53,new_comm, &array_of_requests[index_of_comm++]);
- }
-
- MPI_Waitall(index_of_comm, array_of_requests, array_of_statuses);
-
- //MPI_Type_free(&fcol);
-
-}
-

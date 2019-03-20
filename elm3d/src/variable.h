@@ -3,7 +3,8 @@
 #define Max(x,y) ( (x)>=(y)  ?  (x) : (y) )
 #define Min(x,y) ( (x)<=(y)  ?  (x) : (y) )
 #define output5		"vel"
-#define ff 2
+#define P 18
+
 
 //---------------------------------------------------------------------------------
 int geo[NumGeo][3];
@@ -13,13 +14,13 @@ int source[3][NumSource];
 int lr_count,lr_countx,lr_county,lr_countz;
 double msource[Max_Time][NumSource];
 
-double posn[Nx+2][Ny][Nz][3], force[Nx+2*ff][Ny][Nz][3];
+double posn[Nx+2][Ny][Nz][3], force[Nx][Ny][Nz][3];
 double eqposn[Nx][Ny][Nz][3],up[Nx][Ny][Nz][3],dens[Nx+2][Ny][Nz];
 double vp[Nx+2][Ny][Nz],vs[Nx+2][Ny][Nz];
-double kspring[Nx][Ny][Nz][9], cbond[Nx][Ny][Nz][9];
+double kspring[Nx][Ny][Nz][18], cbond[Nx][Ny][Nz][18];
 
-int IndexX[9],IndexY[9],IndexZ[9];
-double r0[9], ux[9],uy[9],uz[9],iroot2,dt2;
+int IndexX[18],IndexY[18],IndexZ[18];
+double r0[18], ux[18],uy[18],uz[18],iroot2,dt2;
 double abx[Nx],aby[Ny],abz[Nz];
 
 //---------------------------------------------------------------------------------

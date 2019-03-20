@@ -5,27 +5,33 @@
 # Yingzi Ying 
 # yingzi.ying@me.com
 #
+nproc=$1
 
 echo "`date`"
 echo "----------------------------------------"
 exe=elm
 example_folder='./example'
-echo "Running $exe in $example_folder"
+echo "The example is in $example_folder"
 
 echo "----------------------------------------"
 echo
-echo "Step 1: create executive."
+echo "Step 1: create $exe."
 src_folder='./src'
 exe_src=$exe.c
-cp $example_folder/parameters.h $src_folder
+rm -f $src_folder/parameters.h
+cp $example_folder/input/parameters.h $src_folder
 
 rm -f $example_folder/$exe
-mpiCC $src_folder/$exe_src -o $example_folder/$exe
-exit
+#mpiCC $src_folder/$exe_src -o $example_folder/$exe
+mpicc $src_folder/$exe_src -o $example_folder/$exe -lm
 
 echo "----------------------------------------"
 echo
-NPROC=4
 echo "Step 2: run $exe. Number of processes: $nproc."
 cd $example_folder
-mpiexec -np $NPROC $exe
+mpiexec -n $nproc $exe
+exit
+
+cd ../
+./plotStationSignal.sh
+../utils/git.sh push
