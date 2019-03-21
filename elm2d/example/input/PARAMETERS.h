@@ -10,7 +10,7 @@
 #define lambda       (2.5e-6)     // decay constant for boundary (1/3n^2)
 #define width         100        // no of absorbing columns
 #define flat_surface   0        // 0- no flat surface 1-flat surface at Ny-4
-#define topography     1        // 0-topography off ; 1-> topography on
+#define topography     0        // 0-topography off ; 1-> topography on
 #define input5      "./input/topo"    // topography file (x,y)
 #define velocity_model 0        // 0-homogeneous: 1-input file:
 #define input4    "./input/vp"    // P-velocity file
@@ -28,7 +28,7 @@
 #define NumSource 1             // Number of entries in source_locations file
 #define sdir 3                  // Source direction 0=x  1=z 3=explosive
 #define sscale (1e+8)           // Scale source amplitude by this factor (Force)
-#define input2 "./input/ricker/ricker4hz"       // Source file
+#define input2 "./input/signal"       // Source file
 #define mxx 1.0
 #define mzz 1.0
 #define mxz 0.0
