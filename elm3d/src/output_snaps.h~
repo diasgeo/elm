@@ -272,8 +272,8 @@ for(nosnaps=0; nosnaps<NumSnapS; nosnaps++)
   {
     fscanf(input[n],"%lf %lf %lf %lf %lf %lf\n", &a1,&a2,&a3,&a4,&a5,&a6);
     aa[0]=a1; aa[1]=a2; aa[2]=a3;aa[3]=a4; aa[4]=a5; aa[5]=a6;
-    //fwrite(&aa, sizeof(double), 6, out);
-    fprintf(out,"%e %e %e\n",a1,a2,a3);
+    fwrite(&aa, sizeof(double), 6, out);
+    //fprintf(out,"%e %e %e\n",a1,a2,a3);
   }
   }
 

@@ -30,9 +30,9 @@ exampleFolder=example/
 figfolder=$exampleFolder\figures/
 mkdir -p $figfolder
 
-parameterFile=$exampleFolder\input/parameters.h
+parameterFile=$exampleFolder\input/PARAMETERS.h
 stationNamePrefix=`grep output4 $parameterFile | cut -d \" -f 2`
-stationFile=$exampleFolder`grep input6 $parameterFile | cut -d \" -f 2`
+stationFile=$exampleFolder`grep input0 $parameterFile | cut -d \" -f 2`
 stationNumber=`wc -l $stationFile | awk '{ print $1 }'`
 dt=`grep \ dt $parameterFile | cut -d "(" -f2 | cut -d ")" -f1`
 nt=`grep Max_Time $parameterFile | cut -d "(" -f2 | cut -d ")" -f1`
@@ -83,3 +83,6 @@ rm -f $figfolder/ps2raster_*bb
 done
 
 rm $timeFile
+
+rm -f gmt.conf
+rm -f gmt.history

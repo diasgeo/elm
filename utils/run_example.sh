@@ -7,7 +7,7 @@
 #
 nproc=$1
 
-echo "`date`"
+echo "start time: `date`"
 echo "----------------------------------------"
 exe=elm
 example_folder='./example'
@@ -24,12 +24,14 @@ cp $example_folder/input/parameters.h $src_folder
 rm -f $example_folder/$exe
 #mpiCC $src_folder/$exe_src -o $example_folder/$exe
 mpicc $src_folder/$exe_src -o $example_folder/$exe -lm
+exit
 
 echo "----------------------------------------"
 echo
 echo "Step 2: run $exe. Number of processes: $nproc."
 cd $example_folder
 mpiexec -np $nproc $exe
+echo "end time: `date`"
 exit
 
 cd ../

@@ -29,7 +29,7 @@ echo "----------------------------------------"
 echo
 echo "Step 2: run $exe. Number of processes: $nproc."
 cd $example_folder
-mpiexec -n $nproc $exe
+mpiexec -np $nproc $exe
 exit
 
 cd ../

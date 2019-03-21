@@ -1,11 +1,11 @@
 //---------------------------------------------------------------------------------
 // MODEL VALUE
-#define Nx             (20)    // run on 64 nodes
-#define Ny             (200)              // Y DIR
-#define Nz             (50)              // Z DIR
+#define Nx             (21)    // run on 64 nodes
+#define Ny             (231)              // Y DIR
+#define Nz             (121)              // Z DIR
 #define dx             (40.0)         // Grid Spacing
 #define dt             (1.0e-3)        // Time step
-#define Max_Time       (5001)            // Max run iterations
+#define Max_Time       (2001)            // Max run iterations
 //---------------------------------------------------------------------------------
 // PHYSICAL VALUE
 #define velocity_model (0)             // 0 - homo model: 1-hetero model
@@ -17,7 +17,7 @@
 // BOUNDARY CONDITIONS
 #define absorb_model    0           // 0->no boundary: 1->absorb: 2->absorb + surface
 #define lambda         (2.0e-6)      // 1.5 2.0 4.0 decay constant for boundary
-#define width           100           // no of absorbing columns
+#define width           20           // no of absorbing columns
 #define topography       0            // 2-> two layers 1-> top file 0 -> none
 #define input5        "input/topography"     //topography 
 //----------------------------------------------------------------------------------
@@ -36,7 +36,7 @@
 #define NumSnap 	1            // No of snapshots
 #define isnap 		2500            // snapshot record interval
 #define snap_start 	2500            // start snapshot
-#define NumSnapS 	1             // No of surface snapshots
+#define NumSnapS 	2             // No of surface snapshots
 #define isnapS 		500           // surface snapshot record interval
 //----------------------------------------------------------------------------------
 // OUTPUT FILE NAMES
