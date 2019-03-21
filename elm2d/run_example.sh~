@@ -24,7 +24,6 @@ cp $example_folder/input/PARAMETERS.h $src_folder
 rm -f $example_folder/$exe
 #mpiCC $src_folder/$exe_src -o $example_folder/$exe
 mpicc $src_folder/$exe_src -o $example_folder/$exe -lm
-exit
 
 echo "----------------------------------------"
 echo
