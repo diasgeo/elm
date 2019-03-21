@@ -10,10 +10,10 @@
 #define lambda       (2.5e-6)     // decay constant for boundary (1/3n^2)
 #define width         100        // no of absorbing columns
 #define flat_surface   0        // 0- no flat surface 1-flat surface at Ny-4
-#define topography     0        // 0-topography off ; 1-> topography on
-#define input5      "./input/gauss_topo"    // topography file (x,y)
+#define topography     1        // 0-topography off ; 1-> topography on
+#define input5      "./input/topo"    // topography file (x,y)
 #define velocity_model 0        // 0-homogeneous: 1-input file:
-#define input4    "./input/gradient_vp"    // P-velocity file
+#define input4    "./input/vp"    // P-velocity file
 //---------------------------------------------------------------------------
 // PHYSICAL VALUES
 #define dt (0.0005)            // Time step 

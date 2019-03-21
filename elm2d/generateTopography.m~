@@ -13,7 +13,10 @@ x= transpose([0:Nx-1]);
 
 topo = ones(size(x))*(Nx-100);
 
-fileID = fopen(['example/input/topo'],'w');
+topoFile=system('grep input5 example/input/PARAMETERS.h | cut -d \" -f 2')
+stop
+
+fileID = fopen(['topography'],'w');
 
 for i = [1:Nx]
   fprintf(fileID, '%i %i\n', x(i), topo(i));
