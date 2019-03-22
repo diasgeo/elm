@@ -80,7 +80,7 @@ echo "3 0.5 Y" | gmt pstext -R -J -F+jLB -N -O >> $ps
 
 
 
-gmt ps2raster -A -Te $ps -D$figfolder
+gmt psconvert -A -Te $ps -D$figfolder
 epstopdf --outfile=$pdf $eps
 rm -f $ps $eps
 rm -f $figfolder/ps2raster_*bb

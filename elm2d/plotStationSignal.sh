@@ -2,7 +2,6 @@
 rm -f gmt.conf
 rm -f gmt.history
 
-gmt gmtset MAP_FRAME_AXES wesn
 gmt gmtset MAP_FRAME_TYPE plain
 gmt gmtset MAP_FRAME_PEN thick
 gmt gmtset MAP_TICK_PEN thick
@@ -67,6 +66,7 @@ projection=X2.2i/1.0i
 offset=-1.0i
 
 resampling=10
+gmt gmtset MAP_FRAME_AXES wesn
 paste -d " " $timeFile $originalxy | awk -v resampling="$resampling" -v normalization="$normalization" 'NR%resampling==0 {print $1, $2/normalization}' | gmt psxy -J$projection -R$region -Bxa2f1+l"Time (s)" -Bya1f0.5+l"Amplitude" -Wthin,black -K > $ps
 echo "3 0.5 X" | gmt pstext -R -J -F+jLB -N -O -K >> $ps
 gmt gmtset MAP_FRAME_AXES WeSn
