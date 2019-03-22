@@ -37,10 +37,11 @@ Nx=$Ny
 
 topo_polygon=$exampleFolder/topo_polygon
 topo=$exampleFolder\input/topo
-echo "($Nx-1)*$dx/1000" "($Ny-1)*$dy/1000" > $topo_polygon
-cat $topo | tail -n 1 | awk '{print $1, 0}' >> $topo_polygon
+cat $topo > $topo_polygon
+echo $(($Nx-1)) $(($Ny-1)) >> $topo_polygon
+echo 0 $(($Ny-1)) >> $topo_polygon
 echo 0 0 >> $topo_polygon
-cat $topo | head -n 1 >> $topo_polygon
+exit
 
 source=$exampleFolder\input/source
 stations=$exampleFolder\input/stations
@@ -75,7 +76,7 @@ domain=1.1i/-0.4i/1.2i/0.16ih
 #done
 #done
 
-snapshotNormalizationFile=$exampleFolder\disp2000
+snapshotNormalizationFile=$exampleFolder\disp1000
 
 xmin=`gmt gmtinfo $snapshotNormalizationFile -C | awk '{print $1}'`
 xmax=`gmt gmtinfo $snapshotNormalizationFile -C | awk '{print $2}'`
@@ -93,7 +94,7 @@ grd=$snapshotFile.nc
 projection=X2.2i/2.2i
 
 region=0/`echo "($Nx-1)*$dx/1000" | bc -l`/0/`echo "($Ny-1)*$dx/1000" | bc -l`
-plotPointNumber=200
+plotPointNumber=300
 inc=`echo "($Nx-1)*$dx/1000/$plotPointNumber" | bc -l`
 
 allSnapshots=`ls example/disp* | cut -d "/" -f 2`
@@ -107,10 +108,10 @@ pdf=$figfolder`echo $iSnapshot | cut -d '.' -f 1`.pdf
 
 paste -d ' ' $coordinate $exampleFolder$iSnapshot | awk -v normalization="$normalization" -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000, $3/normalization }'> $snapshotFile
 cat $snapshotFile | gmt blockmean -R$region -I$inc | gmt surface -Ll$lowerLimit -Lu$upperLimit -R$region -I$inc -G$grd
-gmt grdimage -R$region -J$projection  -Bxa2f1+l"X (km) " -Bya2f1+l"Z (km)" $grd -C$cpt > $ps
-#awk -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000 }' $topo_polygon | gmt psxy -R -J  -W1p -O -K >> $ps #-L+yt -Ggray 
-#awk -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000 }' $stations | gmt psxy -R -J -St0.05i -Gblue -N -Wthinner,black -O -K >> $ps
-#awk -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000 }' $source   | gmt psxy -R -J -Sa0.05i -Gred  -N -Wthinner,black -O    >> $ps
+gmt grdimage -R$region -J$projection  -Bxa2f1+l"X (km) " -Bya2f1+l"Z (km)" $grd -C$cpt -K > $ps
+awk -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000 }' $topo_polygon | gmt psxy -R -J  -W1p -O -K >> $ps #-L+yt -Ggray 
+awk -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000 }' $stations | gmt psxy -R -J -St0.05i -Gblue -N -Wthinner,black -O -K >> $ps
+awk -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000 }' $source   | gmt psxy -R -J -Sa0.05i -Gred  -N -Wthinner,black -O    >> $ps
 
 #gmt psscale -D$domain -C$cpt -E -Bx1f0.5 -O | sed "s/$minOldString1/$minNewString1/g" | sed "s/$minOldString2/$minNewString2/g" | sed "s/$maxOldString1/$maxNewString1/g" | sed "s/$maxOldString2/$maxNewString2/g">> $ps
 

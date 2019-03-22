@@ -37,8 +37,9 @@ Nx=$Ny
 
 topo_polygon=$exampleFolder/topo_polygon
 topo=$exampleFolder\input/topo
-echo "($Nx-1)" "($Ny-1)" > $topo_polygon
-echo 0 "($Ny-1)" > $topo_polygon
+cat $topo > $topo_polygon
+echo $(($Nx-1)) $(($Ny-1)) >> $topo_polygon
+echo 0 $(($Ny-1)) >> $topo_polygon
 echo 0 0 >> $topo_polygon
 
 source=$exampleFolder\input/source
