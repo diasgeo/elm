@@ -75,7 +75,7 @@ domain=1.1i/-0.4i/1.2i/0.16ih
 #done
 #done
 
-snapshotNormalizationFile=$exampleFolder\disp1500
+snapshotNormalizationFile=$exampleFolder\disp1000
 
 xmin=`gmt gmtinfo $snapshotNormalizationFile -C | awk '{print $1}'`
 xmax=`gmt gmtinfo $snapshotNormalizationFile -C | awk '{print $2}'`

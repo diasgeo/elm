@@ -31,6 +31,7 @@ echo "Step 2: run $exe. Number of processes: $nproc."
 cd $example_folder
 mpiexec -np $nproc $exe
 echo "end time: `date`"
+exit
 
 cd ../
 ./plotStationSignal.sh
