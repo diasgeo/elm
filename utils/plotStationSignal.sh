@@ -2,7 +2,7 @@
 rm -f gmt.conf
 rm -f gmt.history
 
-gmt gmtset MAP_FRAME_AXES WeSn
+gmt gmtset MAP_FRAME_AXES wesn
 gmt gmtset MAP_FRAME_TYPE plain
 gmt gmtset MAP_FRAME_PEN thick
 gmt gmtset MAP_TICK_PEN thick
@@ -67,8 +67,9 @@ projection=X2.2i/1.0i
 offset=-1.0i
 
 resampling=10
-paste -d " " $timeFile $originalxy | awk -v resampling="$resampling" -v normalization="$normalization" 'NR%resampling==0 {print $1, $2/normalization}' | gmt psxy -J$projection -R$region -Bxa2f1+l"Time (s)" -Bya1f0.5+l"Amplitude" -Wthin,blue -K > $ps
-paste -d " " $timeFile $originalxy | awk -v resampling="$resampling" -v normalization="$normalization" 'NR%resampling==0 {print $1, $3/normalization}' | gmt psxy -J -R -B -Wthin,red -O -Y$offset>> $ps
+paste -d " " $timeFile $originalxy | awk -v resampling="$resampling" -v normalization="$normalization" 'NR%resampling==0 {print $1, $2/normalization}' | gmt psxy -J$projection -R$region -Bxa2f1+l"Time (s)" -Bya1f0.5+l"Amplitude" -Wthin,black -K > $ps
+gmt gmtset MAP_FRAME_AXES WeSn
+paste -d " " $timeFile $originalxy | awk -v resampling="$resampling" -v normalization="$normalization" 'NR%resampling==0 {print $1, $3/normalization}' | gmt psxy -J -R -B -Wthin,black -O -Y$offset>> $ps
 
 #gmt pslegend -R -J -Dx1i/0.5i+w0.2i+jBL -O << END >> $ps
 #S 0.5c - 1.0c 0/0/0 thin,blue 2c X
