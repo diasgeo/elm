@@ -120,7 +120,6 @@ epstopdf --outfile=$pdf $eps
 rm -f $ps $eps
 rm -f $figfolder/ps2raster_*bb
 
-exit
 done
 
 gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=$figfolder\merged.pdf $figfolder\disp*.pdf
