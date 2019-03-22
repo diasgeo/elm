@@ -10,8 +10,14 @@ nproc=9;
 Nx = Nx_mpi*nproc;
 
 x= transpose([0:Nx-1]);
+x_min = min(x);
+x_max = max(x);
+x_middle = (x_min + x_max)/2;
 
-topo = ones(size(x))*(Nx-100);
+%topo = ones(size(x))*(Nx-100);
+topoHight=300;
+topo = Nx-1 -topoHight + round(gausswin(Nx)*topoHight);
+
 
 fileID = fopen(['example/input/topo'],'w');
 
