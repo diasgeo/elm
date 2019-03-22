@@ -34,7 +34,7 @@
 #define mxz 0.0
 //---------------------------------------------------------------------------
 // RECEIVERS  &&  SNAPSHOTS
-#define NumGeo 1              // Number of entries in geophone file
+#define NumGeo 2              // Number of entries in geophone file
 #define input0 "./input/stations" // Trace coordinates in x y format
 #define NumSnap 2           // No of snapshots
 #define isnap 500                // Snapshot record interval
