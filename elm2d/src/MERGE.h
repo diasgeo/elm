@@ -95,9 +95,9 @@ for(nosnaps=0; nosnaps<NumSnap; nosnaps++)
   for(j = 0; j < Nx; j++)
   {
     fscanf( input[n],"%lf %lf\n", &a1, &a2);
-   // fprintf( out,"%e %e\n", a1, a2);
-    aa[0]=a1; aa[1]=a2;
-    fwrite(&aa, sizeof(double), 2, out);
+    fprintf( out,"%e %e\n", a1, a2);
+    //aa[0]=a1; aa[1]=a2;
+    //fwrite(&aa, sizeof(double), 2, out);
   }
   }
   }
