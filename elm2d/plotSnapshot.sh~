@@ -41,7 +41,6 @@ cat $topo > $topo_polygon
 echo $(($Nx-1)) $(($Ny-1)) >> $topo_polygon
 echo 0 $(($Ny-1)) >> $topo_polygon
 echo 0 0 >> $topo_polygon
-exit
 
 source=$exampleFolder\input/source
 stations=$exampleFolder\input/stations
