@@ -5,7 +5,8 @@
 #define Nx ( 55)         // Length of x grid (mpi)
 #define Ny ( 495 )        // Length of y grid (no mpi)
 //---------------------------------------------------------------------------
-// BOUNDARY CONDITIONS #define absorb_model   2        // 0 -> off 1-> full on: 2 -> surface on;
+// BOUNDARY CONDITIONS 
+#define absorb_model   2        // 0 -> off 1-> full on: 2 -> surface on;
 #define lambda       (2.5e-6)     // decay constant for boundary (1/3n^2)
 #define width         100        // no of absorbing columns
 #define flat_surface   0        // 0- no flat surface 1-flat surface at 
