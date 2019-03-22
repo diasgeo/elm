@@ -71,7 +71,7 @@ paste -d " " $timeFile $originalxy | awk -v resampling="$resampling" -v normaliz
 echo "3 0.5 X" | gmt pstext -R -J -F+jLB -N -O -K >> $ps
 gmt gmtset MAP_FRAME_AXES WeSn
 paste -d " " $timeFile $originalxy | awk -v resampling="$resampling" -v normalization="$normalization" 'NR%resampling==0 {print $1, $3/normalization}' | gmt psxy -J -R -B -Wthin,black -O -K -Y$offset>> $ps
-echo "3 0.5 Y" | gmt pstext -R -J -F+jLB -N -O >> $ps
+echo "3 0.5 Z" | gmt pstext -R -J -F+jLB -N -O >> $ps
 
 #gmt pslegend -R -J -Dx1i/0.5i+w0.2i+jBL -O << END >> $ps
 #S 0.5c - 1.0c 0/0/0 thin,blue 2c X

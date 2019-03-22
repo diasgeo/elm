@@ -5,11 +5,10 @@
 #define Nx ( 55)         // Length of x grid (mpi)
 #define Ny ( 495 )        // Length of y grid (no mpi)
 //---------------------------------------------------------------------------
-// BOUNDARY CONDITIONS
-#define absorb_model   2        // 0 -> off 1-> full on: 2 -> surface on;
+// BOUNDARY CONDITIONS #define absorb_model   2        // 0 -> off 1-> full on: 2 -> surface on;
 #define lambda       (2.5e-6)     // decay constant for boundary (1/3n^2)
 #define width         100        // no of absorbing columns
-#define flat_surface   0        // 0- no flat surface 1-flat surface at Ny-4
+#define flat_surface   0        // 0- no flat surface 1-flat surface at 
 #define topography     1        // 0-topography off ; 1-> topography on
 #define input5      "./input/topo"    // topography file (x,y)
 #define velocity_model 0        // 0-homogeneous: 1-input file:
@@ -36,9 +35,9 @@
 // RECEIVERS  &&  SNAPSHOTS
 #define NumGeo 2              // Number of entries in geophone file
 #define input0 "./input/stations" // Trace coordinates in x y format
-#define NumSnap 15           // No of snapshots
-#define isnap 500                // Snapshot record interval
-#define snap_start 1000        // Start snapshots
+#define NumSnap 35           // No of snapshots
+#define isnap 200                // Snapshot record interval
+#define snap_start 200        // Start snapshots
 //---------------------------------------------------------------------------
 // Fracture models
 #define fracture_model 0       // Fractures on 1 or off 0
