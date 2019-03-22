@@ -75,7 +75,7 @@ domain=1.1i/-0.4i/1.2i/0.16ih
 #done
 #done
 
-snapshotNormalizationFile=$exampleFolder\disp2000
+snapshotNormalizationFile=$exampleFolder\disp1500
 
 xmin=`gmt gmtinfo $snapshotNormalizationFile -C | awk '{print $1}'`
 xmax=`gmt gmtinfo $snapshotNormalizationFile -C | awk '{print $2}'`
@@ -122,5 +122,4 @@ rm -f $figfolder/ps2raster_*bb
 
 done
 
-seq 200 200 8000
 gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=$figfolder\merged.pdf $figfolder\disp*.pdf
