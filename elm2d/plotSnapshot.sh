@@ -122,8 +122,9 @@ rm -f $figfolder/ps2raster_*bb
 
 done
 
-#for isnap in seq 200 200 7000
-#do
-	#pdfname=disp$isnap.pdf
-#done
-#gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=$figfolder\merged.pdf $figfolder\disp*.pdf
+for isnap in $(seq 200 200 7000)
+do
+PDFName=$figfolder\disp$isnap.pdf
+totalPDFName+=" $PDFName"
+done
+gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=$figfolder\merged.pdf $totalPDFName
