@@ -45,9 +45,9 @@ x_stationNumber=`cat $stationFile | awk -v iStation="$iStation" 'NR==iStation{ p
 y_stationNumber=`cat $stationFile | awk -v iStation="$iStation" 'NR==iStation{ print $2 }'`
 
 name=$stationNamePrefix$x_stationNumber\_$y_stationNumber
-ps=$figfolder$name\_$iStation.ps
-eps=$figfolder$name\_$iStation.eps
-pdf=$figfolder$name\_$iStation.pdf
+ps=$figfolder$name.ps
+eps=$figfolder$name.eps
+pdf=$figfolder$name.pdf
 
 originalxy=$exampleFolder$name
 

@@ -36,9 +36,6 @@ stationFile=$exampleFolder`grep input0 $parameterFile | cut -d \" -f 2`
 stationNumber=`wc -l $stationFile | awk '{ print $1 }'`
 dt=`grep \ dt $parameterFile | cut -d "(" -f2 | cut -d ")" -f1`
 nt=`grep Max_Time $parameterFile | cut -d "(" -f2 | cut -d ")" -f1`
-echo $nt
-echo $dt
-exit
 timeFile=$exampleFolder/time
 seq 0 $(($nt-1)) | awk -v dt="$dt" '{ print $1*dt}'>$timeFile
 
