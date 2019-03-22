@@ -75,7 +75,7 @@ domain=1.1i/-0.4i/1.2i/0.16ih
 #done
 #done
 
-snapshotNormalizationFile=$exampleFolder\disp1000
+snapshotNormalizationFile=$exampleFolder\disp2000
 
 xmin=`gmt gmtinfo $snapshotNormalizationFile -C | awk '{print $1}'`
 xmax=`gmt gmtinfo $snapshotNormalizationFile -C | awk '{print $2}'`
@@ -108,7 +108,7 @@ pdf=$figfolder`echo $iSnapshot | cut -d '.' -f 1`.pdf
 paste -d ' ' $coordinate $exampleFolder$iSnapshot | awk -v normalization="$normalization" -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000, $3/normalization }'> $snapshotFile
 cat $snapshotFile | gmt blockmean -R$region -I$inc | gmt surface -Ll$lowerLimit -Lu$upperLimit -R$region -I$inc -G$grd
 gmt grdimage -R$region -J$projection  -Bxa2f1+l"X (km) " -Bya2f1+l"Z (km)" $grd -C$cpt -K > $ps
-awk -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000 }' $topo_polygon | gmt psxy -R -J  -W1p -O -K >> $ps #-L+yt -Ggray 
+awk -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000 }' $topo_polygon | gmt psxy -R -J -Ggray -W1p -O -K >> $ps #-L+yt -Ggray 
 awk -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000 }' $stations | gmt psxy -R -J -St0.05i -Gblue -N -Wthinner,black -O -K >> $ps
 awk -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000 }' $source   | gmt psxy -R -J -Sa0.05i -Gred  -N -Wthinner,black -O    >> $ps
 

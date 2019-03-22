@@ -12,8 +12,7 @@ Nx = Nx_mpi*nproc;
 x= transpose([0:Nx-1]);
 x_min = min(x);
 x_max = max(x);
-x_middle = (x_min + x_max)/2
-stop
+x_middle = (x_min + x_max)/2;
 
 %topo = ones(size(x))*(Nx-100);
 topoHight=300;

@@ -15,8 +15,8 @@ x_max = max(x);
 x_middle = (x_min + x_max)/2;
 
 %topo = ones(size(x))*(Nx-100);
-topoHight=300;
-topo = Nx-1 -topoHight + round(gausswin(Nx)*topoHight);
+topoHight=200;
+topo = Nx-100 -topoHight + round(gausswin(Nx)*topoHight);
 
 
 fileID = fopen(['example/input/topo'],'w');
