@@ -155,5 +155,5 @@ echo "4 4 Z" | gmt pstext -R -J -F+jLB -N -O >> $ps
 rm -f $grd
 gmt psconvert -A -Te $ps -D$figfolder
 epstopdf --outfile=$pdf $eps
-rm -f $ps $eps
+#rm -f $ps $eps
 rm -f $figfolder/ps2raster_*bb
