@@ -212,6 +212,7 @@ region=0/`echo "($Nx-1)*$dx/1000" | bc -l`/0/`echo "($Ny-1)*$dx/1000" | bc -l`
 plotPointNumber=300
 inc=`echo "($Nx-1)*$dx/1000/$plotPointNumber" | bc -l`
 
+gmt gmtset MAP_FRAME_AXES WeSn
 paste -d ' ' $coordinate $snapshotFile | awk -v normalization="$normalization" -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000, $3/normalization }' > $snapshotFile.processed
 cat $snapshotFile.processed | gmt blockmean -R$region -I$inc | gmt surface -Ll$lowerLimit -Lu$upperLimit -R$region -I$inc -G$grd
 gmt grdimage -R$region -J$projection  -Bxa2f1+l"X (km) " -Bya2f1+l"Z (km)" $grd -C$cpt -X-$offset -Y-$offset2 -O -K >> $ps
@@ -219,6 +220,7 @@ awk -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000 }' $source   | gmt psxy -R -J -S
 echo "4 4 X" | gmt pstext -R -J -F+jLB -N -O -K >> $ps
 echo "0.5 0.5 $sourceType" | gmt pstext -R -J -F+jLB -N -O -K >> $ps
 
+gmt gmtset MAP_FRAME_AXES wesn
 paste -d ' ' $coordinate $snapshotFile | awk -v normalization="$normalization" -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000, $4/normalization }'> $snapshotFile.processed
 cat $snapshotFile.processed | gmt blockmean -R$region -I$inc | gmt surface -Ll$lowerLimit -Lu$upperLimit -R$region -I$inc -G$grd
 gmt grdimage -R$region -J$projection  -Bxa2f1+l"X (km) " -Bya2f1+l"Z (km)" $grd -C$cpt -X$offset -O -K >> $ps

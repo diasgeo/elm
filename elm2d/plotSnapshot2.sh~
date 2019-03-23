@@ -13,7 +13,7 @@ gmt gmtset MAP_TICK_LENGTH_PRIMARY -3p
 #gmt gmtset MAP_GRID_PEN_PRIMARY thin,black
 #gmt gmtset MAP_GRID_PEN_SECONDARY thin,black
 gmt gmtset MAP_ORIGIN_X 100p
-gmt gmtset MAP_ORIGIN_Y 10i
+gmt gmtset MAP_ORIGIN_Y 7i
 #gmt gmtset FORMAT_GEO_OUT +D
 gmt gmtset COLOR_NAN 255/255/255
 gmt gmtset COLOR_FOREGROUND 255/255/255
