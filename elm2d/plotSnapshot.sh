@@ -91,6 +91,7 @@ snapshotFile=$exampleFolder\snapshot
 grd=$snapshotFile.nc
 
 projection=X2.2i/2.2i
+offset=2.2i
 
 region=0/`echo "($Nx-1)*$dx/1000" | bc -l`/0/`echo "($Ny-1)*$dx/1000" | bc -l`
 plotPointNumber=300
@@ -110,7 +111,14 @@ cat $snapshotFile | gmt blockmean -R$region -I$inc | gmt surface -Ll$lowerLimit 
 gmt grdimage -R$region -J$projection  -Bxa2f1+l"X (km) " -Bya2f1+l"Z (km)" $grd -C$cpt -K > $ps
 awk -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000 }' $topo_polygon | gmt psxy -R -J -Ggray -W1p -O -K >> $ps #-L+yt -Ggray 
 awk -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000 }' $stations | gmt psxy -R -J -St0.05i -Gblue -N -Wthinner,black -O -K >> $ps
-awk -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000 }' $source   | gmt psxy -R -J -Sa0.05i -Gred  -N -Wthinner,black -O    >> $ps
+awk -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000 }' $source   | gmt psxy -R -J -Sa0.05i -Gred  -N -Wthinner,black -O -K  >> $ps
+
+paste -d ' ' $coordinate $exampleFolder$iSnapshot | awk -v normalization="$normalization" -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000, $4/normalization }'> $snapshotFile
+cat $snapshotFile | gmt blockmean -R$region -I$inc | gmt surface -Ll$lowerLimit -Lu$upperLimit -R$region -I$inc -G$grd
+gmt grdimage -R$region -J$projection  -Bxa2f1+l"X (km) " -Bya2f1+l"Z (km)" $grd -C$cpt -X$offset -O -K >> $ps
+awk -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000 }' $topo_polygon | gmt psxy -R -J -Ggray -W1p -O -K >> $ps #-L+yt -Ggray 
+awk -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000 }' $stations | gmt psxy -R -J -St0.05i -Gblue -N -Wthinner,black -O -K >> $ps
+awk -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000 }' $source   | gmt psxy -R -J -Sa0.05i -Gred  -N -Wthinner,black -O  >> $ps
 
 #gmt psscale -D$domain -C$cpt -E -Bx1f0.5 -O | sed "s/$minOldString1/$minNewString1/g" | sed "s/$minOldString2/$minNewString2/g" | sed "s/$maxOldString1/$maxNewString1/g" | sed "s/$maxOldString2/$maxNewString2/g">> $ps
 
