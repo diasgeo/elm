@@ -20,7 +20,7 @@ gmt gmtset COLOR_FOREGROUND 255/255/255
 gmt gmtset COLOR_BACKGROUND 0/0/0
 gmt gmtset FONT 12p,Helvetica,black
 #gmt gmtset FONT 9p,Times-Roman,black
-gmt gmtset PS_MEDIA A4
+gmt gmtset PS_MEDIA a3
 #gmt gmtset PS_MEDIA letter   
 gmt gmtset PS_PAGE_ORIENTATION portrait
 #gmt gmtset GMT_VERBOSE d
@@ -98,15 +98,13 @@ region=0/`echo "($Nx-1)*$dx/1000" | bc -l`/0/`echo "($Ny-1)*$dx/1000" | bc -l`
 plotPointNumber=300
 inc=`echo "($Nx-1)*$dx/1000/$plotPointNumber" | bc -l`
 
-#gmt gmtset MAP_FRAME_AXES wesn
 paste -d ' ' $coordinate $snapshotFile | awk -v normalization="$normalization" -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000, $3/normalization }' > $snapshotFile.processed
 cat $snapshotFile.processed | gmt blockmean -R$region -I$inc | gmt surface -Ll$lowerLimit -Lu$upperLimit -R$region -I$inc -G$grd
-gmt grdimage -R$region -J$projection  -Bxa2f1+l"X (km) " -Bya2f1+l"Z (km)wesn" $grd -C$cpt -K > $ps
+gmt grdimage -R$region -J$projection  -Bxa2f1+l"X (km) " -Bya2f1+l"Z (km)" $grd -C$cpt -K > $ps
 awk -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000 }' $source   | gmt psxy -R -J -Sa0.05i -Gred  -N -Wthinner,black -O -K  >> $ps
 echo "4 4 X" | gmt pstext -R -J -F+jLB -N -O -K >> $ps
 echo "0.5 0.5 $sourceType" | gmt pstext -R -J -F+jLB -N -O -K >> $ps
 
-#gmt gmtset MAP_FRAME_AXES wesn
 paste -d ' ' $coordinate $snapshotFile | awk -v normalization="$normalization" -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000, $4/normalization }'> $snapshotFile.processed
 cat $snapshotFile.processed | gmt blockmean -R$region -I$inc | gmt surface -Ll$lowerLimit -Lu$upperLimit -R$region -I$inc -G$grd
 gmt grdimage -R$region -J$projection  -Bxa2f1+l"X (km) " -Bya2f1+l"Z (km)" $grd -C$cpt -X$offset -O -K >> $ps
@@ -145,7 +143,6 @@ awk -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000 }' $source   | gmt psxy -R -J -S
 echo "4 4 X" | gmt pstext -R -J -F+jLB -N -O -K >> $ps
 echo "0.5 0.5 $sourceType" | gmt pstext -R -J -F+jLB -N -O -K >> $ps
 
-gmt gmtset MAP_FRAME_AXES wesn
 paste -d ' ' $coordinate $snapshotFile | awk -v normalization="$normalization" -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000, $4/normalization }'> $snapshotFile.processed
 cat $snapshotFile.processed | gmt blockmean -R$region -I$inc | gmt surface -Ll$lowerLimit -Lu$upperLimit -R$region -I$inc -G$grd
 gmt grdimage -R$region -J$projection  -Bxa2f1+l"X (km) " -Bya2f1+l"Z (km)" $grd -C$cpt -X$offset -O -K >> $ps
