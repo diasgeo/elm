@@ -71,7 +71,7 @@ resampling=10
 gmt gmtset MAP_FRAME_AXES wesn
 paste -d " " $timeFile $originalxy | awk -v resampling="$resampling" -v normalization="$normalization" 'NR%resampling==0 {print $1, $2/normalization}' | gmt psxy -J$projection -R$region -Bxa2f1+l"Time (s)" -Bya1f0.5+l"Amplitude" -Wthin,black -K > $ps
 echo "3 0.5 X" | gmt pstext -R -J -F+jLB -N -O -K >> $ps
-echo "0.25 -0.75 (a)" | gmt pstext -R -J -F+jLB -N -O -K >> $ps
+echo "0.25 -0.75 Left" | gmt pstext -R -J -F+jLB -N -O -K >> $ps
 gmt gmtset MAP_FRAME_AXES wesn
 paste -d " " $timeFile $originalxy | awk -v resampling="$resampling" -v normalization="$normalization" 'NR%resampling==0 {print $1, $3/normalization}' | gmt psxy -J -R -B -Wthin,black -O -K -X$XOffset>> $ps
 echo "3 0.5 Z" | gmt pstext -R -J -F+jLB -N -O -K >> $ps
@@ -94,10 +94,10 @@ normalization=`echo $x_normalization $y_normalization | awk ' { if($1>$2) {print
 
 
 resampling=10
-gmt gmtset MAP_FRAME_AXES wesn
+gmt gmtset MAP_FRAME_AXES WeSn
 paste -d " " $timeFile $originalxy | awk -v resampling="$resampling" -v normalization="$normalization" 'NR%resampling==0 {print $1, $2/normalization}' | gmt psxy -J$projection -R$region -Bxa2f1+l"Time (s)" -Bya1f0.5+l"Amplitude" -Wthin,black -X-$XOffset -Y-$YOffset -O -K >> $ps
 echo "3 0.5 X" | gmt pstext -R -J -F+jLB -N -O -K >> $ps
-echo "0.25 -0.75 (b)" | gmt pstext -R -J -F+jLB -N -O -K >> $ps
+echo "0.25 -0.75 Right" | gmt pstext -R -J -F+jLB -N -O -K >> $ps
 gmt gmtset MAP_FRAME_AXES wesn
 paste -d " " $timeFile $originalxy | awk -v resampling="$resampling" -v normalization="$normalization" 'NR%resampling==0 {print $1, $3/normalization}' | gmt psxy -J -R -B -Wthin,black -O -K -X$XOffset>> $ps
 echo "3 0.5 Z" | gmt pstext -R -J -F+jLB -N -O >> $ps
