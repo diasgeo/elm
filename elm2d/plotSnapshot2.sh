@@ -72,7 +72,7 @@ ps=$figfolder\disp$number.ps
 eps=$figfolder\disp$number.eps
 pdf=$figfolder\disp$number.pdf
 
-sourceType=explosive
+sourceType=XForce
 snapshotFile=$exampleFolder\disp$number\_$sourceType
 
 xmin=`gmt gmtinfo $snapshotFile -C | awk '{print $1}'`
@@ -101,7 +101,7 @@ cat $snapshotFile.processed | gmt blockmean -R$region -I$inc | gmt surface -Ll$l
 gmt grdimage -R$region -J$projection  -Bxa2f1+l"X (km) " -Bya2f1+l"Z (km)" $grd -C$cpt -K > $ps
 awk -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000 }' $source   | gmt psxy -R -J -Sa0.05i -Gred  -N -Wthinner,black -O -K  >> $ps
 echo "4 4 X" | gmt pstext -R -J -F+jLB -N -O -K >> $ps
-echo "0.5 0.5 Explosive" | gmt pstext -R -J -F+jLB -N -O -K >> $ps
+echo "0.5 0.5 $sourceType" | gmt pstext -R -J -F+jLB -N -O -K >> $ps
 
 gmt gmtset MAP_FRAME_AXES wesn
 paste -d ' ' $coordinate $snapshotFile | awk -v normalization="$normalization" -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000, $4/normalization }'> $snapshotFile.processed
