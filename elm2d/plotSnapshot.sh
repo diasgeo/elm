@@ -65,14 +65,14 @@ cpt=$exampleFolder\snapshot.cpt
 gmt makecpt -CGMT_seis.cpt -T$zmin/$zmax/$zinc -Z > $cpt
 domain=1.1i/-0.4i/1.2i/0.16ih
 
-#rm -f $coordinate
-#for ix in $( seq 0 $((Nx-1)) )
-#do
-#for iy in $( seq 0 $((Ny-1)) )
-#do
-#echo $ix $iy >> $coordinate
-#done
-#done
+rm -f $coordinate
+for ix in $( seq 0 $((Nx-1)) )
+do
+for iy in $( seq 0 $((Ny-1)) )
+do
+echo $ix $iy >> $coordinate
+done
+done
 
 snapshotNormalizationFile=$exampleFolder\disp2000
 

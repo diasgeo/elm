@@ -2,8 +2,6 @@ clear all
 close all
 clc
 
-
-
 [NxStatus Nx] = system('grep \ Nx example/input/PARAMETERS.h | cut -d "(" -f2 | cut -d ")" -f1');
 Nx_mpi = str2num(Nx);
 nproc=9;
@@ -17,7 +15,6 @@ x_middle = (x_min + x_max)/2;
 %topo = ones(size(x))*(Nx-100);
 topoHight=200;
 topo = Nx-100 -topoHight + round(gausswin(Nx)*topoHight);
-
 
 fileID = fopen(['example/input/topo'],'w');
 

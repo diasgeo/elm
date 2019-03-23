@@ -95,7 +95,6 @@ void set_up_geometry_and_neighbours()
  multk=2.0; multk1=1.0;
  double m1,m2 ,m3,m4; 
 
-
 //////////////////////////////////////////////////////////////////////
 
  for(i=0; i<Nx; i++)
@@ -116,7 +115,7 @@ void set_up_geometry_and_neighbours()
 
     m1=1.0;
     m2=1.0;
-    m3=1.0;
+    m3=2.0;
     m4=1.0;
 
     if( kspring[i][j][k][1]==0.0 )

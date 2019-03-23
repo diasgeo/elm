@@ -163,16 +163,16 @@ void initial_lattice_setup()
  {
  for(k=0; k<Nz; k++)
  {
-   posn[i+1][j][k][0]=i*dx+my_rank*dx*Nx;
-   posn[i+1][j][k][1]=dx*j;
-   posn[i+1][j][k][2]=dx*k;
+    posn[i+1][j][k][0]=i*dx+my_rank*dx*Nx;
+    posn[i+1][j][k][1]=dx*j;
+    posn[i+1][j][k][2]=dx*k;
 
-   eqposn[i][j][k][0]=posn[i+1][j][k][0];
-   eqposn[i][j][k][1]=posn[i+1][j][k][1];
-   eqposn[i][j][k][2]=posn[i+1][j][k][2];
- }
- }
- }
+    eqposn[i][j][k][0]=posn[i+1][j][k][0];
+    eqposn[i][j][k][1]=posn[i+1][j][k][1];
+    eqposn[i][j][k][2]=posn[i+1][j][k][2];
+  }
+  }
+  }
 
   lr_count=lr_countx=lr_county=lr_countz=0;
   for(i=0; i<Nx; i=i+LR)

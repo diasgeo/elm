@@ -5,9 +5,9 @@
 
 ///----------------------------------------------
 #define my_size         64                  // number of nodes used
-#define Nx             (8)                 // X DIR 
-#define Max_Time       (5001)               // Max run iterations
-#define NumGeo       	75             // Number geophone locations
+#define Nx             (2)                 // X DIR 
+#define Max_Time       (10001)               // Max run iterations
+#define NumGeo       	13             // Number geophone locations
 #define input0         "recorders"                 // trace coordinates in x y format
 #define input1         "bulk_rec_node"                 // trace coordinates in x y format
 #define output1        "station"

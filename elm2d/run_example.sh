@@ -5,7 +5,11 @@
 # Yingzi Ying 
 # yingzi.ying@me.com
 #
-nproc=$1
+# example 1: topographic structure.  #cp -r example_topo example
+# example 2: source mechanism.       #cp -r example_source example
+
+#nproc=$1
+nproc=9
 
 echo "start time: `date`"
 echo "----------------------------------------"
