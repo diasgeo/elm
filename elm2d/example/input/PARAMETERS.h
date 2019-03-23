@@ -26,12 +26,13 @@
 #define input_source 1          // 1-external input source; 3-no source
 #define input1 "./input/source"       // Source location file
 #define NumSource 1             // Number of entries in source_locations file
-#define sdir 3                  // Source direction 0=x  1=z 3=explosive
+#define sdir 4                  // Source direction 0=x  1=z 3=explosive
 #define sscale (1e+8)           // Scale source amplitude by this factor (Force)
 #define input2 "./input/signal"       // Source file
-#define mxx 1.0
-#define mzz 1.0
-#define mxz 0.0
+#define mxx 0.0
+#define mzz 0.0
+#define mxz 1.0
+//vertical vertical dip-slip
 //---------------------------------------------------------------------------
 // RECEIVERS  &&  SNAPSHOTS
 #define NumGeo 1              // Number of entries in geophone file
