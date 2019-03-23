@@ -36,7 +36,7 @@
 // RECEIVERS  &&  SNAPSHOTS
 #define NumGeo 2              // Number of entries in geophone file
 #define input0 "./input/stations" // Trace coordinates in x y format
-#define NumSnap 35           // No of snapshots
+#define NumSnap 40           // No of snapshots
 #define isnap 200                // Snapshot record interval
 #define snap_start 200        // Start snapshots
 //---------------------------------------------------------------------------
