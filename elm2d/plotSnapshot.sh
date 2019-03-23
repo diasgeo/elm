@@ -133,7 +133,7 @@ rm -f $figfolder/ps2raster_*bb
 
 done
 
-for isnap in $(seq 200 200 7000)
+for isnap in $(seq 200 200 8000)
 do
 PDFName=$figfolder\disp$isnap.pdf
 totalPDFName+=" $PDFName"
