@@ -20,7 +20,7 @@ gmt gmtset COLOR_BACKGROUND 0/0/0
 gmt gmtset FONT 12p,Helvetica,black
 #gmtset MAP_ANNOT_ORTHO snew
 #gmt gmtset FONT 9p,Times-Roman,black
-gmt gmtset PS_MEDIA custom_2.8ix2.8i
+#gmt gmtset PS_MEDIA custom_2.8ix2.8i
 gmt gmtset PS_MEDIA letter   
 gmt gmtset PS_PAGE_ORIENTATION portrait
 #gmt gmtset GMT_VERBOSE d
@@ -63,9 +63,9 @@ normalization=`echo $x_normalization $y_normalization | awk ' { if($1>$2) {print
 
 timeDuration=`echo "(($nt-1)*($dt))" | bc -l`
 region=0/$timeDuration/-1/1
-projection=X2.2i/1.0i
+projection=X2.2i/0.8i
 XOffset=2.2i
-YOffset=1.1i
+YOffset=0.85i
 
 resampling=10
 gmt gmtset MAP_FRAME_AXES wesn

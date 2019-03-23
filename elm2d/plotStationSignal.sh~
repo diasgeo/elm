@@ -20,7 +20,7 @@ gmt gmtset COLOR_BACKGROUND 0/0/0
 gmt gmtset FONT 12p,Helvetica,black
 #gmtset MAP_ANNOT_ORTHO snew
 #gmt gmtset FONT 9p,Times-Roman,black
-#gmt gmtset PS_MEDIA custom_2.8ix2.8i
+gmt gmtset PS_MEDIA custom_2.8ix2.8i
 gmt gmtset PS_MEDIA letter   
 gmt gmtset PS_PAGE_ORIENTATION portrait
 #gmt gmtset GMT_VERBOSE d
