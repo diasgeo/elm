@@ -19,7 +19,7 @@ gmt gmtset COLOR_FOREGROUND 255/255/255
 gmt gmtset COLOR_BACKGROUND 0/0/0
 gmt gmtset FONT 12p,Helvetica,black
 #gmt gmtset FONT 9p,Times-Roman,black
-#gmt gmtset PS_MEDIA custom_2.8ix2.8i
+#gmt gmtset PS_MEDIA A4
 gmt gmtset PS_MEDIA letter   
 gmt gmtset PS_PAGE_ORIENTATION portrait
 #gmt gmtset GMT_VERBOSE d
@@ -153,7 +153,7 @@ echo "4 4 Z" | gmt pstext -R -J -F+jLB -N -O >> $ps
 #------------------------------------
 
 rm -f $grd
-gmt ps2raster -A -Te $ps -D$figfolder
+gmt psconvert -A -Te $ps -D$figfolder
 epstopdf --outfile=$pdf $eps
 rm -f $ps $eps
 rm -f $figfolder/ps2raster_*bb
