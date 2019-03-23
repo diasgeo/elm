@@ -2,6 +2,7 @@
 rm gmt.conf
 rm gmt.history
 
+gmt gmtset MAP_FRAME_AXES WeSn
 gmt gmtset MAP_FRAME_TYPE plain
 gmt gmtset MAP_FRAME_PEN thick
 gmt gmtset MAP_TICK_PEN thick
@@ -105,24 +106,19 @@ ps=$figfolder`echo $iSnapshot | cut -d '.' -f 1`.ps
 eps=$figfolder`echo $iSnapshot | cut -d '.' -f 1`.eps
 pdf=$figfolder`echo $iSnapshot | cut -d '.' -f 1`.pdf
 
-gmt gmtset MAP_FRAME_AXES WeSn
 paste -d ' ' $coordinate $exampleFolder$iSnapshot | awk -v normalization="$normalization" -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000, $3/normalization }'> $snapshotFile
 cat $snapshotFile | gmt blockmean -R$region -I$inc | gmt surface -Ll$lowerLimit -Lu$upperLimit -R$region -I$inc -G$grd
 gmt grdimage -R$region -J$projection  -Bxa2f1+l"X (km) " -Bya2f1+l"Z (km)" $grd -C$cpt -K > $ps
-echo "4 4 X" | gmt pstext -R -J -F+jLB -N -O -K >> $ps
 awk -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000 }' $topo_polygon | gmt psxy -R -J -Ggray -W1p -O -K >> $ps #-L+yt -Ggray 
 awk -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000 }' $stations | gmt psxy -R -J -St0.05i -Gblue -N -Wthinner,black -O -K >> $ps
 awk -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000 }' $source   | gmt psxy -R -J -Sa0.05i -Gred  -N -Wthinner,black -O -K  >> $ps
 
-gmt gmtset MAP_FRAME_AXES wesn
 paste -d ' ' $coordinate $exampleFolder$iSnapshot | awk -v normalization="$normalization" -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000, $4/normalization }'> $snapshotFile
 cat $snapshotFile | gmt blockmean -R$region -I$inc | gmt surface -Ll$lowerLimit -Lu$upperLimit -R$region -I$inc -G$grd
-gmt grdimage -R$region -J$projection  -Bxa2f1+l"X (km) " -Bya2f1+l"Z (km)" $grd -C$cpt -X$offset -O -K >> $ps
-echo "4 4 Z" | gmt pstext -R -J -F+jLB -N -O -K >> $ps
+gmt grdimage -R$region -J$projection  -Bxa2f1+l"X (km) " -Bya2f1+l"Z (km)" $grd -C$cpt -X$offset -O -K > $ps
 awk -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000 }' $topo_polygon | gmt psxy -R -J -Ggray -W1p -O -K >> $ps #-L+yt -Ggray 
 awk -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000 }' $stations | gmt psxy -R -J -St0.05i -Gblue -N -Wthinner,black -O -K >> $ps
 awk -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000 }' $source   | gmt psxy -R -J -Sa0.05i -Gred  -N -Wthinner,black -O  >> $ps
-
 #gmt psscale -D$domain -C$cpt -E -Bx1f0.5 -O | sed "s/$minOldString1/$minNewString1/g" | sed "s/$minOldString2/$minNewString2/g" | sed "s/$maxOldString1/$maxNewString1/g" | sed "s/$maxOldString2/$maxNewString2/g">> $ps
 
 rm -f $grd
