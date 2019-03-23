@@ -20,10 +20,11 @@ gmt gmtset COLOR_FOREGROUND 255/255/255
 gmt gmtset COLOR_BACKGROUND 0/0/0
 gmt gmtset FONT 12p,Helvetica,black
 #gmt gmtset FONT 9p,Times-Roman,black
-gmt set PS_MEDIA=A4 PS_CONVERT=""
-#gmt gmtset PS_MEDIA letter   
+#gmt gmtset PS_MEDIA a3
+gmt gmtset PS_MEDIA letter   
 gmt gmtset PS_PAGE_ORIENTATION portrait
 #gmt gmtset GMT_VERBOSE d
+gmt gmtset PS_CONVERT=""
 
 exampleFolder=example/
 figfolder=$exampleFolder\figures/

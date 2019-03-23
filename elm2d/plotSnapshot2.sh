@@ -13,15 +13,15 @@ gmt gmtset MAP_TICK_LENGTH_PRIMARY -3p
 #gmt gmtset MAP_GRID_PEN_PRIMARY thin,black
 #gmt gmtset MAP_GRID_PEN_SECONDARY thin,black
 gmt gmtset MAP_ORIGIN_X 100p
-gmt gmtset MAP_ORIGIN_Y 100p
+gmt gmtset MAP_ORIGIN_Y 10i
 #gmt gmtset FORMAT_GEO_OUT +D
 gmt gmtset COLOR_NAN 255/255/255
 gmt gmtset COLOR_FOREGROUND 255/255/255
 gmt gmtset COLOR_BACKGROUND 0/0/0
 gmt gmtset FONT 12p,Helvetica,black
 #gmt gmtset FONT 9p,Times-Roman,black
-#gmt gmtset PS_MEDIA a3
-gmt gmtset PS_MEDIA letter   
+gmt set PS_MEDIA=A4
+#gmt gmtset PS_MEDIA letter   
 gmt gmtset PS_PAGE_ORIENTATION portrait
 #gmt gmtset GMT_VERBOSE d
 
