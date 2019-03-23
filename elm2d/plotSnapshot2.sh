@@ -72,7 +72,7 @@ ps=$figfolder\disp$number.ps
 eps=$figfolder\disp$number.eps
 pdf=$figfolder\disp$number.pdf
 
-sourceType=ZForce
+sourceType=XForce
 snapshotFile=$exampleFolder\disp$number\_$sourceType
 
 xmin=`gmt gmtinfo $snapshotFile -C | awk '{print $1}'`
