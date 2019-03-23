@@ -65,7 +65,7 @@ timeDuration=`echo "(($nt-1)*($dt))" | bc -l`
 region=0/$timeDuration/-1/1
 projection=X2.2i/1.0i
 XOffset=2.2i
-YOffset=1.0i
+YOffset=1.1i
 
 resampling=10
 gmt gmtset MAP_FRAME_AXES wesn
@@ -74,8 +74,33 @@ echo "3 0.5 X" | gmt pstext -R -J -F+jLB -N -O -K >> $ps
 echo "0.25 -0.75 (a)" | gmt pstext -R -J -F+jLB -N -O -K >> $ps
 gmt gmtset MAP_FRAME_AXES wesn
 paste -d " " $timeFile $originalxy | awk -v resampling="$resampling" -v normalization="$normalization" 'NR%resampling==0 {print $1, $3/normalization}' | gmt psxy -J -R -B -Wthin,black -O -K -X$XOffset>> $ps
-echo "3 0.5 Z" | gmt pstext -R -J -F+jLB -N -O >> $ps
+echo "3 0.5 Z" | gmt pstext -R -J -F+jLB -N -O -K >> $ps
 
+iStation=2
+x_stationNumber=`cat $stationFile | awk -v iStation="$iStation" 'NR==iStation{ print $1 }'`
+y_stationNumber=`cat $stationFile | awk -v iStation="$iStation" 'NR==iStation{ print $2 }'`
+
+originalxy=$exampleFolder$name$x_stationNumber\_$y_stationNumber
+
+xmin=`gmt gmtinfo $originalxy -C | awk '{print $1}'`
+xmax=`gmt gmtinfo $originalxy -C | awk '{print $2}'`
+ymin=`gmt gmtinfo $originalxy -C | awk '{print $3}'`
+ymax=`gmt gmtinfo $originalxy -C | awk '{print $4}'`
+
+x_normalization=`echo $xmin $xmax | awk ' { if(sqrt($1^2)>(sqrt($2^2))) {print sqrt($1^2)} else {print sqrt($2^2)}}'`
+y_normalization=`echo $ymin $ymax | awk ' { if(sqrt($1^2)>(sqrt($2^2))) {print sqrt($1^2)} else {print sqrt($2^2)}}'`
+
+normalization=`echo $x_normalization $y_normalization | awk ' { if($1>$2) {print $1} else {print $2}}'`
+
+
+resampling=10
+gmt gmtset MAP_FRAME_AXES wesn
+paste -d " " $timeFile $originalxy | awk -v resampling="$resampling" -v normalization="$normalization" 'NR%resampling==0 {print $1, $2/normalization}' | gmt psxy -J$projection -R$region -Bxa2f1+l"Time (s)" -Bya1f0.5+l"Amplitude" -Wthin,black -X-$XOffset -Y-$YOffset -O -K >> $ps
+echo "3 0.5 X" | gmt pstext -R -J -F+jLB -N -O -K >> $ps
+echo "0.25 -0.75 (b)" | gmt pstext -R -J -F+jLB -N -O -K >> $ps
+gmt gmtset MAP_FRAME_AXES wesn
+paste -d " " $timeFile $originalxy | awk -v resampling="$resampling" -v normalization="$normalization" 'NR%resampling==0 {print $1, $3/normalization}' | gmt psxy -J -R -B -Wthin,black -O -K -X$XOffset>> $ps
+echo "3 0.5 Z" | gmt pstext -R -J -F+jLB -N -O >> $ps
 
 gmt psconvert -A -Te $ps -D$figfolder
 epstopdf --outfile=$pdf $eps
