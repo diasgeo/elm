@@ -111,43 +111,43 @@ gmt grdimage -R$region -J$projection  -Bxa2f1+l"X (km) " -Bya2f1+l"Z (km)" $grd 
 awk -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000 }' $source   | gmt psxy -R -J -Sa0.05i -Gred  -N -Wthinner,black -O -K >> $ps
 echo "4 4 Z" | gmt pstext -R -J -F+jLB -N -O -K >> $ps
 #------------------------------------
-number=2000
-ps=$figfolder\disp$number.ps
-eps=$figfolder\disp$number.eps
-pdf=$figfolder\disp$number.pdf
+#number=2000
+#ps=$figfolder\disp$number.ps
+#eps=$figfolder\disp$number.eps
+#pdf=$figfolder\disp$number.pdf
 
-sourceType=ZForce
-snapshotFile=$exampleFolder\disp$number\_$sourceType
+#sourceType=ZForce
+#snapshotFile=$exampleFolder\disp$number\_$sourceType
 
-xmin=`gmt gmtinfo $snapshotFile -C | awk '{print $1}'`
-xmax=`gmt gmtinfo $snapshotFile -C | awk '{print $2}'`
-ymin=`gmt gmtinfo $snapshotFile -C | awk '{print $3}'`
-ymax=`gmt gmtinfo $snapshotFile -C | awk '{print $4}'`
+#xmin=`gmt gmtinfo $snapshotFile -C | awk '{print $1}'`
+#xmax=`gmt gmtinfo $snapshotFile -C | awk '{print $2}'`
+#ymin=`gmt gmtinfo $snapshotFile -C | awk '{print $3}'`
+#ymax=`gmt gmtinfo $snapshotFile -C | awk '{print $4}'`
 
-x_normalization=`echo $xmin $xmax | awk ' { if(sqrt($1^2)>(sqrt($2^2))) {print sqrt($1^2)} else {print sqrt($2^2)}}'`
-y_normalization=`echo $ymin $ymax | awk ' { if(sqrt($1^2)>(sqrt($2^2))) {print sqrt($1^2)} else {print sqrt($2^2)}}'`
-normalization=`echo $x_normalization $y_normalization | awk ' { if($1>$2) {print $1} else {print $2}}'`
+#x_normalization=`echo $xmin $xmax | awk ' { if(sqrt($1^2)>(sqrt($2^2))) {print sqrt($1^2)} else {print sqrt($2^2)}}'`
+#y_normalization=`echo $ymin $ymax | awk ' { if(sqrt($1^2)>(sqrt($2^2))) {print sqrt($1^2)} else {print sqrt($2^2)}}'`
+#normalization=`echo $x_normalization $y_normalization | awk ' { if($1>$2) {print $1} else {print $2}}'`
 
-upperLimit=1
-lowerLimit=-1
-grd=$snapshotFile.nc
+#upperLimit=1
+#lowerLimit=-1
+#grd=$snapshotFile.nc
 
-region=0/`echo "($Nx-1)*$dx/1000" | bc -l`/0/`echo "($Ny-1)*$dx/1000" | bc -l`
-plotPointNumber=300
-inc=`echo "($Nx-1)*$dx/1000/$plotPointNumber" | bc -l`
+#region=0/`echo "($Nx-1)*$dx/1000" | bc -l`/0/`echo "($Ny-1)*$dx/1000" | bc -l`
+#plotPointNumber=300
+#inc=`echo "($Nx-1)*$dx/1000/$plotPointNumber" | bc -l`
 
-paste -d ' ' $coordinate $snapshotFile | awk -v normalization="$normalization" -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000, $3/normalization }' > $snapshotFile.processed
-cat $snapshotFile.processed | gmt blockmean -R$region -I$inc | gmt surface -Ll$lowerLimit -Lu$upperLimit -R$region -I$inc -G$grd
-gmt grdimage -R$region -J$projection  -Bxa2f1+l"X (km) " -Bya2f1+l"Z (km)" $grd -C$cpt -X-$offset -Y-$offset2 -O -K >> $ps
-awk -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000 }' $source   | gmt psxy -R -J -Sa0.05i -Gred  -N -Wthinner,black -O -K  >> $ps
-echo "4 4 X" | gmt pstext -R -J -F+jLB -N -O -K >> $ps
-echo "0.5 0.5 $sourceType" | gmt pstext -R -J -F+jLB -N -O -K >> $ps
+#paste -d ' ' $coordinate $snapshotFile | awk -v normalization="$normalization" -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000, $3/normalization }' > $snapshotFile.processed
+#cat $snapshotFile.processed | gmt blockmean -R$region -I$inc | gmt surface -Ll$lowerLimit -Lu$upperLimit -R$region -I$inc -G$grd
+#gmt grdimage -R$region -J$projection  -Bxa2f1+l"X (km) " -Bya2f1+l"Z (km)" $grd -C$cpt -X-$offset -Y-$offset2 -O -K >> $ps
+#awk -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000 }' $source   | gmt psxy -R -J -Sa0.05i -Gred  -N -Wthinner,black -O -K  >> $ps
+#echo "4 4 X" | gmt pstext -R -J -F+jLB -N -O -K >> $ps
+#echo "0.5 0.5 $sourceType" | gmt pstext -R -J -F+jLB -N -O -K >> $ps
 
-paste -d ' ' $coordinate $snapshotFile | awk -v normalization="$normalization" -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000, $4/normalization }'> $snapshotFile.processed
-cat $snapshotFile.processed | gmt blockmean -R$region -I$inc | gmt surface -Ll$lowerLimit -Lu$upperLimit -R$region -I$inc -G$grd
-gmt grdimage -R$region -J$projection  -Bxa2f1+l"X (km) " -Bya2f1+l"Z (km)" $grd -C$cpt -X$offset -O -K >> $ps
-awk -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000 }' $source   | gmt psxy -R -J -Sa0.05i -Gred  -N -Wthinner,black -O -K >> $ps
-echo "4 4 Z" | gmt pstext -R -J -F+jLB -N -O -K >> $ps
+#paste -d ' ' $coordinate $snapshotFile | awk -v normalization="$normalization" -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000, $4/normalization }'> $snapshotFile.processed
+#cat $snapshotFile.processed | gmt blockmean -R$region -I$inc | gmt surface -Ll$lowerLimit -Lu$upperLimit -R$region -I$inc -G$grd
+#gmt grdimage -R$region -J$projection  -Bxa2f1+l"X (km) " -Bya2f1+l"Z (km)" $grd -C$cpt -X$offset -O -K >> $ps
+#awk -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000 }' $source   | gmt psxy -R -J -Sa0.05i -Gred  -N -Wthinner,black -O -K >> $ps
+#echo "4 4 Z" | gmt pstext -R -J -F+jLB -N -O -K >> $ps
 #-----------------------------
 number=2000
 ps=$figfolder\disp$number.ps
