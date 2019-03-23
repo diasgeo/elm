@@ -35,7 +35,7 @@ stationFile=$exampleFolder`grep input0 $parameterFile | cut -d \" -f 2`
 stationNumber=`wc -l $stationFile | awk '{ print $1 }'`
 dt=`grep \ dt $parameterFile | cut -d "(" -f2 | cut -d ")" -f1`
 nt=`grep Max_Time $parameterFile | cut -d "(" -f2 | cut -d ")" -f1`
-timeFile=$exampleFolder/time
+timeFile=$exampleFolder\time
 seq 0 $(($nt-1)) | awk -v dt="$dt" '{ print $1*dt}'>$timeFile
 
 name=$stationNamePrefix
@@ -49,10 +49,7 @@ iStation=1
 x_stationNumber=`cat $stationFile | awk -v iStation="$iStation" 'NR==iStation{ print $1 }'`
 y_stationNumber=`cat $stationFile | awk -v iStation="$iStation" 'NR==iStation{ print $2 }'`
 
-
-originalxy=$exampleFolder$name
-echo $originalxy
-exit
+originalxy=$exampleFolder$name$x_stationNumber\_$y_stationNumber
 
 xmin=`gmt gmtinfo $originalxy -C | awk '{print $1}'`
 xmax=`gmt gmtinfo $originalxy -C | awk '{print $2}'`
@@ -67,15 +64,15 @@ normalization=`echo $x_normalization $y_normalization | awk ' { if($1>$2) {print
 timeDuration=`echo "(($nt-1)*($dt))" | bc -l`
 region=0/$timeDuration/-1/1
 projection=X2.2i/1.0i
-XOffset=2.3i
-Yoffset=1.0i
+XOffset=2.2i
+YOffset=1.0i
 
 resampling=10
 gmt gmtset MAP_FRAME_AXES wesn
 paste -d " " $timeFile $originalxy | awk -v resampling="$resampling" -v normalization="$normalization" 'NR%resampling==0 {print $1, $2/normalization}' | gmt psxy -J$projection -R$region -Bxa2f1+l"Time (s)" -Bya1f0.5+l"Amplitude" -Wthin,black -K > $ps
 echo "3 0.5 X" | gmt pstext -R -J -F+jLB -N -O -K >> $ps
 gmt gmtset MAP_FRAME_AXES WeSn
-paste -d " " $timeFile $originalxy | awk -v resampling="$resampling" -v normalization="$normalization" 'NR%resampling==0 {print $1, $3/normalization}' | gmt psxy -J -R -B -Wthin,black -O -K -Y-$offset>> $ps
+paste -d " " $timeFile $originalxy | awk -v resampling="$resampling" -v normalization="$normalization" 'NR%resampling==0 {print $1, $3/normalization}' | gmt psxy -J -R -B -Wthin,black -O -K -X$XOffset>> $ps
 echo "3 0.5 Z" | gmt pstext -R -J -F+jLB -N -O >> $ps
 
 
@@ -85,7 +82,6 @@ rm -f $ps $eps
 rm -f $figfolder/ps2raster_*bb
 #done
 
-rm $timeFile
 
 rm -f gmt.conf
 rm -f gmt.history

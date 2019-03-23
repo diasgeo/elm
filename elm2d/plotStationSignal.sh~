@@ -35,7 +35,7 @@ stationFile=$exampleFolder`grep input0 $parameterFile | cut -d \" -f 2`
 stationNumber=`wc -l $stationFile | awk '{ print $1 }'`
 dt=`grep \ dt $parameterFile | cut -d "(" -f2 | cut -d ")" -f1`
 nt=`grep Max_Time $parameterFile | cut -d "(" -f2 | cut -d ")" -f1`
-timeFile=$exampleFolder/time
+timeFile=$exampleFolder\time
 seq 0 $(($nt-1)) | awk -v dt="$dt" '{ print $1*dt}'>$timeFile
 
 name=$stationNamePrefix
@@ -49,10 +49,7 @@ iStation=1
 x_stationNumber=`cat $stationFile | awk -v iStation="$iStation" 'NR==iStation{ print $1 }'`
 y_stationNumber=`cat $stationFile | awk -v iStation="$iStation" 'NR==iStation{ print $2 }'`
 
-
-originalxy=$exampleFolder$name
-cat $originalxy
-exit
+originalxy=$exampleFolder$name$x_stationNumber\_$y_stationNumber
 
 xmin=`gmt gmtinfo $originalxy -C | awk '{print $1}'`
 xmax=`gmt gmtinfo $originalxy -C | awk '{print $2}'`
@@ -63,6 +60,8 @@ x_normalization=`echo $xmin $xmax | awk ' { if(sqrt($1^2)>(sqrt($2^2))) {print s
 y_normalization=`echo $ymin $ymax | awk ' { if(sqrt($1^2)>(sqrt($2^2))) {print sqrt($1^2)} else {print sqrt($2^2)}}'`
 
 normalization=`echo $x_normalization $y_normalization | awk ' { if($1>$2) {print $1} else {print $2}}'`
+echo $normalization
+exit
 
 timeDuration=`echo "(($nt-1)*($dt))" | bc -l`
 region=0/$timeDuration/-1/1
@@ -85,7 +84,6 @@ rm -f $ps $eps
 rm -f $figfolder/ps2raster_*bb
 #done
 
-rm $timeFile
 
 rm -f gmt.conf
 rm -f gmt.history
