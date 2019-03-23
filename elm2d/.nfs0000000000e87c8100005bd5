@@ -94,6 +94,7 @@ offset=2.2i
 region=0/`echo "($Nx-1)*$dx/1000" | bc -l`/0/`echo "($Ny-1)*$dx/1000" | bc -l`
 plotPointNumber=300
 inc=`echo "($Nx-1)*$dx/1000/$plotPointNumber" | bc -l`
+echo $region
 
 gmt gmtset MAP_FRAME_AXES wesn
 paste -d ' ' $coordinate $snapshotFile | awk -v normalization="$normalization" -v dx="$dx" '{ print $1*dx/1000, $2*dx/1000, $3/normalization }' > $snapshotFile.processed

@@ -88,8 +88,8 @@ upperLimit=1
 lowerLimit=-1
 grd=$snapshotFile.nc
 
-projection=X2.2i/2.2i
-offset=2.2i
+projection=X1.4i/1.4i
+offset=1.4i
 
 region=0/`echo "($Nx-1)*$dx/1000" | bc -l`/0/`echo "($Ny-1)*$dx/1000" | bc -l`
 plotPointNumber=300
