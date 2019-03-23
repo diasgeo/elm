@@ -26,7 +26,7 @@
 #define input_source 1          // 1-external input source; 3-no source
 #define input1 "./input/source"       // Source location file
 #define NumSource 1             // Number of entries in source_locations file
-#define sdir 0                  // Source direction 0=x  1=z 3=explosive
+#define sdir 1                  // Source direction 0=x  1=z 3=explosive
 #define sscale (1e+8)           // Scale source amplitude by this factor (Force)
 #define input2 "./input/signal"       // Source file
 #define mxx 1.0
@@ -38,7 +38,7 @@
 #define input0 "./input/stations" // Trace coordinates in x y format
 #define NumSnap 1           // No of snapshots
 #define isnap 100                // Snapshot record interval
-#define snap_start 1600        // Start snapshots
+#define snap_start 2000        // Start snapshots
 //---------------------------------------------------------------------------
 // Fracture models
 #define fracture_model 0       // Fractures on 1 or off 0

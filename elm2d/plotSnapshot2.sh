@@ -67,12 +67,12 @@ domain=1.1i/-0.4i/1.2i/0.16ih
 #done
 #done
 
-number=1600
+number=2000
 ps=$figfolder\disp$number.ps
 eps=$figfolder\disp$number.eps
 pdf=$figfolder\disp$number.pdf
 
-sourceType=XForce
+sourceType=ZForce
 snapshotFile=$exampleFolder\disp$number\_$sourceType
 
 xmin=`gmt gmtinfo $snapshotFile -C | awk '{print $1}'`
