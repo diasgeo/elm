@@ -1,8 +1,8 @@
 //---------------------------------------------------------------------------
 // PARAMETERS.h
 //---------------------------------------------------------------------------
-#define Max_Time (2001)       // No of time steps
-#define Nx ( 55)         // Length of x grid (mpi)
+#define Max_Time (8001)       // No of time steps
+#define Nx ( 165)         // Length of x grid (mpi)
 #define Ny ( 495 )        // Length of y grid (no mpi)
 //---------------------------------------------------------------------------
 // BOUNDARY CONDITIONS 
@@ -10,9 +10,9 @@
 #define lambda       (2.5e-6)     // decay constant for boundary (1/3n^2)
 #define width         100        // no of absorbing columns
 #define flat_surface   0        // 0- no flat surface 1-flat surface at 
-#define topography     0        // 0-topography off ; 1-> topography on
+#define topography     1        // 0-topography off ; 1-> topography on
 #define input5      "./input/topo"    // topography file (x,y)
-#define velocity_model 0        // 0-homogeneous: 1-input file:
+#define velocity_model 1        // 0-homogeneous: 1-input file:
 #define input4    "./input/vp"    // P-velocity file
 //---------------------------------------------------------------------------
 // PHYSICAL VALUES
@@ -26,19 +26,19 @@
 #define input_source 1          // 1-external input source; 3-no source
 #define input1 "./input/source"       // Source location file
 #define NumSource 1             // Number of entries in source_locations file
-#define sdir 4                  // Source direction 0=x  1=z 3=explosive
+#define sdir 3                  // Source direction 0=x  1=z 3=explosive
 #define sscale (1e+8)           // Scale source amplitude by this factor (Force)
 #define input2 "./input/signal"       // Source file
-#define mxx 0.0
-#define mzz 0.0
-#define mxz 1.0
+#define mxx 1.0
+#define mzz 1.0
+#define mxz 0.0
 //---------------------------------------------------------------------------
 // RECEIVERS  &&  SNAPSHOTS
-#define NumGeo 1              // Number of entries in geophone file
+#define NumGeo 2              // Number of entries in geophone file
 #define input0 "./input/stations" // Trace coordinates in x y format
-#define NumSnap 1           // No of snapshots
-#define isnap 100                // Snapshot record interval
-#define snap_start 2000        // Start snapshots
+#define NumSnap 40           // No of snapshots
+#define isnap 200                // Snapshot record interval
+#define snap_start 200        // Start snapshots
 //---------------------------------------------------------------------------
 // Fracture models
 #define fracture_model 0       // Fractures on 1 or off 0
