@@ -1,6 +1,6 @@
 # GMT 5 Session common arguments shelf
 BEGIN GMT 5.4.3
-B	xa1f0.5+lP-wave velocity (km/s)
+B	xa.5f0.25+lP-wave velocity (km/s)
 J	X
 JX	X2.8i
 R	0/4.94000000000000000000/0/4.94000000000000000000
