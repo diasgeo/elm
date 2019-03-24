@@ -78,8 +78,8 @@ ymin=`gmt gmtinfo $originalxyz -C | awk -v scale="$scale" '{print $3/scale}'`
 ymax=`gmt gmtinfo $originalxyz -C | awk -v scale="$scale" '{print $4/scale}'`
 zmin=`gmt gmtinfo $originalxyz -C | awk '{print $5/1000}'`
 zmax=`gmt gmtinfo $originalxyz -C | awk '{print $6/1000}'`
-zmin=3 
-zmax=6 
+zmin=3.5 
+zmax=5.5
 zinc=`echo "($zmax-$zmin)/100" | bc -l`
 
 region=0/`echo "($Nx-1)/$scale" | bc -l`/0/`echo "($Ny-1)/$scale" | bc -l`
