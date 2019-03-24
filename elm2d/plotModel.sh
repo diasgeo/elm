@@ -97,7 +97,7 @@ awk -v scale="$scale" '{ print $1/scale, $2/scale }' $stations | gmt psxy -R -J 
 awk -v scale="$scale" '{ print $1/scale, $2/scale }' $source   | gmt psxy -R -J -Sa0.05i -Gred  -N -Wthinner,black -O -K >> $ps
 awk -v scale="$scale" '{ print $1/scale, $2/scale }' $topo_polygon | gmt psxy -R -J -Ggray -W1p -O -K >> $ps #-L+yt -Ggray 
 
-gmt psscale -D$domain -C$cpt  -Bxa.5f0.25+l"P-wave velocity (km/s)" -O >> $ps
+gmt psscale -D$domain -C$cpt  -Bxa1f0.5+l"P-wave velocity (km/s)" -O >> $ps
 
 gmt psconvert -A -Te $ps -D$figfolder
 epstopdf --outfile=$pdf $eps
