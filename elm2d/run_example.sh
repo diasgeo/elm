@@ -9,7 +9,7 @@
 # example 2: source mechanism.       #cp -r example_source example
 
 #nproc=$1
-nproc=9
+nproc=3
 
 echo "start time: `date`"
 echo "----------------------------------------"

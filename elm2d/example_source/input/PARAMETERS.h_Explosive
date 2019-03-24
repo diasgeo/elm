@@ -2,7 +2,7 @@
 // PARAMETERS.h
 //---------------------------------------------------------------------------
 #define Max_Time (2001)       // No of time steps
-#define Nx ( 55)         // Length of x grid (mpi)
+#define Nx ( 165)         // Length of x grid (mpi)
 #define Ny ( 495 )        // Length of y grid (no mpi)
 //---------------------------------------------------------------------------
 // BOUNDARY CONDITIONS 
