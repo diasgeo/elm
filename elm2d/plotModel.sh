@@ -92,7 +92,7 @@ cat $originalxyz | awk -v scale="$scale" '{ print $1/scale, $2/scale, $3/1000 }'
 cat $processedxyz | gmt blockmode -R$region -I$inc | gmt surface -R$region -I$inc -G$grd
 gmt grdgradient $grd -A15 -Ne0.75 -G$grad
 
-gmt grdimage -R$region -J$projection $grd -C$cpt -Bxa2f1+l"X (m)" -Bya2f1+l"Z (m)" -K > $ps #  Bya2fg2
+gmt grdimage -R$region -J$projection $grd -C$cpt -Bxa2f1+l"X (km)" -Bya2f1+l"Z (km)" -K > $ps #  Bya2fg2
 awk -v scale="$scale" '{ print $1/scale, $2/scale }' $stations | gmt psxy -R -J -St0.1i -Gblue -N -Wthinner,black -O -K >> $ps
 awk -v scale="$scale" '{ print $1/scale, $2/scale }' $source   | gmt psxy -R -J -Sa0.05i -Gred  -N -Wthinner,black -O -K >> $ps
 awk -v scale="$scale" '{ print $1/scale, $2/scale }' $topo_polygon | gmt psxy -R -J -Ggray -W1p -O -K >> $ps #-L+yt -Ggray 
