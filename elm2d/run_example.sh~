@@ -8,7 +8,6 @@
 # example 1: topographic structure.  #cp -r example_topo example
 # example 2: source mechanism.       #cp -r example_source example
 
-
 #nproc=$1
 nproc=3
 
