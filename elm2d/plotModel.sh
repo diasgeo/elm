@@ -57,7 +57,7 @@ coordinate=$exampleFolder/coordinate
 #-----------------------------------------------------
 name=vp
 domain=1.1i/-0.6i/1.4i/0.16ih
-projection=X2.2i
+projection=X2.2i/2.2i
 
 scale=`echo "1000/$dx" | bc -l`
 plotPointNumber=300
